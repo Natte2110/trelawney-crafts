@@ -8,7 +8,7 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Trelawney Crafts</title>
+    <title>Trelawney Crafts | {{ title }}</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap Icons-->
@@ -42,7 +42,7 @@
       id="mainNav"
     >
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">Start Bootstrap</a>
+        <a class="navbar-brand" href="#page-top">Trelawney Crafts</a>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -57,16 +57,13 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ms-auto my-2 my-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="{{ url_for('home') }}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#services">Services</a>
+              <a class="nav-link" href="#portfolio">Gallery</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#contact">Contact</a>
+              <a class="nav-link" href="#contact">Sign In/Register</a>
             </li>
           </ul>
         </div>
@@ -80,17 +77,15 @@
         >
           <div class="col-lg-8 align-self-end">
             <h1 class="text-white font-weight-bold">
-              Your Favorite Place for Free Bootstrap Themes
+              Your Favorite Place for Sharing Cornish-Themed Arts & Crafts
             </h1>
             <hr class="divider" />
           </div>
           <div class="col-lg-8 align-self-baseline">
             <p class="text-white-75 mb-5">
-              Start Bootstrap can help you build better websites using the
-              Bootstrap framework! Just download a theme and start customizing,
-              no strings attached!
+              Trelawney Crafts is a central hub for all that is Cornish representitive arts
             </p>
-            <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+            <a class="btn btn-primary btn-xl" href="#about">View Our Gallery</a>
           </div>
         </div>
       </div>
@@ -108,7 +103,7 @@
                 </div>
             </div>
         </section> -->
-    <!-- Services-->
+    <!-- Services -->
     <section class="page-section" id="services">
       <div class="container px-4 px-lg-5">
         <h2 class="text-center mt-0">At Your Service</h2>
@@ -310,7 +305,7 @@
     <!-- SimpleLightbox plugin JS-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
     <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
