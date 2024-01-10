@@ -49,6 +49,8 @@ The users of this website will be able to upload images and information regardin
 
 This web application will be designed to have an elegant and artistic theme, whilst containing elements of Cornwall hidden within.
 
+In order to speed up development, the [Creative Bootstrap Template](https://startbootstrap.com/theme/creative) will be used as it provides a foundation on which to develop.
+
 #### Color Scheme
 
 To keep in line with the Cornish Theme, the app will follow a colour scheme similar to that of Cornish Tartan.
@@ -78,9 +80,16 @@ The main font that will be applied to the web application is [Montserrat](https:
 
 ### Wireframes
 
-[Desktop Wireframe]()
+[**Desktop Wireframe**](./design/desktop-wireframe.png)
 
-[Mobile Wireframe]()
+<img src="./design/desktop-wireframe.png">
+
+
+[**Mobile Wireframe**](./design/mobile-wireframe.png)
+
+The mobile version will follow the same principles as the desktop design, however the nav bar will expand once the icon is clicked so that it does not take up too much of the screen.
+
+<img src="./design/mobile-wireframe.png">
 
 ### Database Design
 
