@@ -1,6 +1,7 @@
 from trelawneycrafts import db
 
 class User(db.Model):
+    # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     username = task_name = db.Column(db.String(16), unique=True, nullable=False)
     password = task_name = db.Column(db.String(16), unique=True, nullable=False)
@@ -21,7 +22,7 @@ class Category(db.Model):
         )
     
 class Post(db.Model):
-    # schema for the Task model
+    # schema for the Post model
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
@@ -34,7 +35,7 @@ class Post(db.Model):
         )
         
 class Reaction(db.Model):
-    # schema for the Task model
+    # schema for the Reaction model
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
@@ -46,7 +47,7 @@ class Reaction(db.Model):
         )
         
 class Comment(db.Model):
-    # schema for the Task model
+    # schema for the Comment model
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
