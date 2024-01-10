@@ -17,8 +17,8 @@ def register():
         emails = [t[0] for t in list(User.query.with_entities(User.email).all())]
         print(f"Current Users: {usernames}")
         print(f"Current Users: {emails}")
-        if request.form.get("username") not in usernames[0]:
-            if request.form.get("email") not in emails[0]:
+        if request.form.get("username") not in usernames:
+            if request.form.get("email") not in emails:
                 user = User(username=request.form.get("username"), password=request.form.get("username"), email=request.form.get("email"))
                 db.session.add(user)
                 db.session.commit()
