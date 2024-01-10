@@ -3,8 +3,8 @@ from trelawneycrafts import db
 class User(db.Model):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
-    username = task_name = db.Column(db.String(16), unique=True, nullable=False)
-    password = task_name = db.Column(db.String(16), unique=True, nullable=False)
+    username = db.Column(db.String(16), unique=True, nullable=False)
+    password = db.Column(db.String(16), unique=True, nullable=False)
     admin = db.Column(db.Boolean, default=False, nullable=False)
     def __repr__(self):
         # __repr__ to represent itself in the form of a string
