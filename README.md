@@ -19,6 +19,7 @@ The users of this website will be able to upload images and information regardin
         - [**Imagery**](#imagery)
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
+    - [**Database Design**](#database-design)
 
 ---
 
@@ -76,3 +77,17 @@ The users will be able to upload and manage images themselves which will be disp
 The main font that will be applied to the web application is [Montserrat](https://fonts.google.com/specimen/Montserrat), with a fallback font of **Sans-Serif**.
 
 ### Wireframes
+
+[Desktop Wireframe]()
+
+[Mobile Wireframe]()
+
+### Database Design
+
+Below is the schema design for the database that will hold and handle *Users*, *posts* made by those users and *comments/reactions* on the posts.
+
+There is also another table in order to store the names of *categories*
+
+This is a relational database handled by [PostgreSQL](https://www.postgresql.org/) which uses primary and foreign keys from each table in order to relate entries to eachother.
+
+<img src="./design/database-design.png">
