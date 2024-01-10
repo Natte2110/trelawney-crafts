@@ -2974,10 +2974,10 @@ fieldset:disabled .btn {
 
 .btn-primary {
   --bs-btn-color: #fff;
-  --bs-btn-bg: #f4623a;
+  --bs-btn-bg: var(--tart-2);
   --bs-btn-border-color: #f4623a;
   --bs-btn-hover-color: #fff;
-  --bs-btn-hover-bg: #cf5331;
+  --bs-btn-hover-bg: var(--tart-3);
   --bs-btn-hover-border-color: #c34e2e;
   --bs-btn-focus-shadow-rgb: 246, 122, 88;
   --bs-btn-active-color: #fff;
@@ -8456,10 +8456,7 @@ fieldset:disabled .btn {
 
 .bg-primary {
   --bs-bg-opacity: 1;
-  background-color: rgba(
-    var(--bs-primary-rgb),
-    var(--bs-bg-opacity)
-  ) !important;
+  background-color: var(--tart-2);
 }
 
 .bg-secondary {
@@ -11200,7 +11197,7 @@ hr.divider {
   height: 0.2rem;
   max-width: 3.25rem;
   margin: 1.5rem auto;
-  background-color: #f4623a;
+  background-color: var(--tart-2);
   opacity: 1;
 }
 
