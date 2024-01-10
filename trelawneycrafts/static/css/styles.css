@@ -11286,6 +11286,21 @@ header.masthead {
   background-attachment: scroll;
   background-size: cover;
 }
+
+header.gallery {
+  width: 100%;
+  position: fixed;
+  z-index: -99;
+  height: 100vh;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.gallery-intro{
+  padding-top: 40vh;
+  padding-bottom: 40vh;
+}
+
 header.masthead h1,
 header.masthead .h1 {
   font-size: 2.25rem;
