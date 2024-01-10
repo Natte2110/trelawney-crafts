@@ -12,11 +12,11 @@ def gallery():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "POST":
-        usernames = User.query.with_entities(User.username).all()
-        emails = User.query.with_entities(User.email).all()
-        print(f"Current Users: {usernames[0][0]}")
-        print(f"Current Users: {emails[0][0]}")
+    if request.method == "POST": 
+        usernames = [t[0] for t in list(User.query.with_entities(User.username).all())]
+        emails = [t[0] for t in list(User.query.with_entities(User.email).all())]
+        print(f"Current Users: {usernames}")
+        print(f"Current Users: {emails}")
         if request.form.get("username") not in usernames[0]:
             if request.form.get("email") not in emails[0]:
                 user = User(username=request.form.get("username"), password=request.form.get("username"), email=request.form.get("email"))
