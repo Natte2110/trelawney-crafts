@@ -2975,18 +2975,18 @@ fieldset:disabled .btn {
 .btn-primary {
   --bs-btn-color: #fff;
   --bs-btn-bg: var(--tart-2);
-  --bs-btn-border-color: #f4623a;
+  --bs-btn-border-color: var(--tart-2);
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: var(--tart-3);
-  --bs-btn-hover-border-color: #c34e2e;
+  --bs-btn-hover-border-color: var(--tart-3);
   --bs-btn-focus-shadow-rgb: 246, 122, 88;
   --bs-btn-active-color: #fff;
   --bs-btn-active-bg: #c34e2e;
   --bs-btn-active-border-color: #b74a2c;
   --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
   --bs-btn-disabled-color: #fff;
-  --bs-btn-disabled-bg: #f4623a;
-  --bs-btn-disabled-border-color: #f4623a;
+  --bs-btn-disabled-bg: var(--tart-2);
+  --bs-btn-disabled-border-color: var(--tart-2);
 }
 
 .btn-secondary {
@@ -11294,6 +11294,10 @@ header.gallery {
   height: 100vh;
   overflow: hidden;
   background-size: cover;
+}
+
+.login-container{
+  padding-top: 20vh;
 }
 
 .gallery-intro{
