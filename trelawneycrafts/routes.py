@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, flash, url_for
 from trelawneycrafts import app, db
 from trelawneycrafts.models import User, Category, Post, Reaction, Comment
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
+from hashlib import sha256
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -23,11 +24,12 @@ def register():
     if request.method == "POST": 
         usernames = [t[0] for t in list(User.query.with_entities(User.username).all())]
         emails = [t[0] for t in list(User.query.with_entities(User.email).all())]
-        print(f"Current Users: {usernames}")
-        print(f"Current Users: {emails}")
-        if request.form.get("username") not in usernames:
-            if request.form.get("email") not in emails:
-                user = User(username=request.form.get("username"), password=request.form.get("password"), email=request.form.get("email"))
+        new_username = request.form.get("username")
+        new_email = request.form.get("email")
+        hashed_password = sha256(request.form.get("password").encode("utf-8")).hexdigest()
+        if User.query.filter_by(username=new_username).first() is None:
+            if User.query.filter_by(email=new_email).first() is None:
+                user = User(username=new_username, password=hashed_password, email=new_email)
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for("log_in"))
@@ -44,7 +46,7 @@ def log_in():
         username = request.form.get("username")
         password = request.form.get("password")
         user = User.query.filter_by(username=username).first()
-        if user and (user.password == password):
+        if user and (user.password == sha256(password.encode("utf-8")).hexdigest()):
             login_user(user)
             flash('Login successful', 'success')
             return redirect(url_for('home'))
