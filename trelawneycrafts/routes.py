@@ -5,7 +5,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from hashlib import sha256
 
 login_manager = LoginManager(app)
-login_manager.login_view = 'login'
+login_manager.login_view = 'log_in'
 
 @login_manager.user_loader
 def load_user(id):
@@ -55,6 +55,30 @@ def log_in():
             return render_template("login.html", title="Log In")
     else:
         return render_template("login.html", title="Log In")
+    
+@app.route("/account", methods=["GET", "POST"])
+@login_required
+def account():
+    user = {
+        "username": current_user.username,
+        "email": current_user.email
+    }
+    if request.method == "GET": 
+        
+        return render_template("account.html", title=current_user.username, user=user)
+    if request.method == "POST": 
+        updated_username = request.form.get("username")
+        updated_email = request.form.get("email")
+        account = User.query.filter_by(id=current_user.id).first()
+        if updated_username != user["username"]:
+            account.username = updated_username
+            user["username"] = updated_username
+        if updated_email != user["email"]:
+            account.email = updated_email
+            user["email"] = updated_email
+        login_user(account)
+        db.session.commit()
+        return render_template("account.html", title=current_user.username, user=user)
     
 @app.route("/logout")
 @login_required
