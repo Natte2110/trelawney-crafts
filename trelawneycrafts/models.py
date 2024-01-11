@@ -1,6 +1,7 @@
 from trelawneycrafts import db
+from flask_login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     # schema for the User model
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(16), unique=True, nullable=False)
