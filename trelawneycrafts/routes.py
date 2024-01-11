@@ -70,15 +70,22 @@ def account():
         updated_username = request.form.get("username")
         updated_email = request.form.get("email")
         account = User.query.filter_by(id=current_user.id).first()
-        if updated_username != user["username"]:
-            account.username = updated_username
-            user["username"] = updated_username
-        if updated_email != user["email"]:
-            account.email = updated_email
-            user["email"] = updated_email
-        login_user(account)
-        db.session.commit()
-        return render_template("account.html", title=current_user.username, user=user)
+        
+        if User.query.filter_by(username=updated_username).first() is None or updated_username == current_user.username:
+            if User.query.filter_by(email=updated_email).first() is None or updated_email == current_user.email:
+                if updated_username != user["username"]:
+                    account.username = updated_username
+                    user["username"] = updated_username
+                if updated_email != user["email"]:
+                    account.email = updated_email
+                    user["email"] = updated_email
+                login_user(account)
+                db.session.commit()
+                return render_template("account.html", title=current_user.username, user=user, error="f", message="Account updated successfully.")
+            else:
+                return render_template("account.html", title=current_user.username, user=user, error="t", message="That email is already in use.")
+        else:
+            return render_template("account.html", title=current_user.username, user=user, error="t", message="Username already taken. Please try a different one.")
     
 @app.route("/logout")
 @login_required
