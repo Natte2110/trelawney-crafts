@@ -1,14 +1,14 @@
 from flask import render_template, request, redirect, flash, url_for
 from trelawneycrafts import app, db
 from trelawneycrafts.models import User, Category, Post, Reaction, Comment
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(User.id))
+def load_user(id):
+    return User.query.get(int(id))
 
 @app.route("/")
 def home():
@@ -40,5 +40,15 @@ def register():
 
 @app.route("/log-in", methods=["GET", "POST"])
 def log_in():
-   
-    return render_template("login.html", title="Log In")
+    if request.method == "POST": 
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = User.query.filter_by(username=username).first()
+        if user and (user.password == password):
+            login_user(user)
+            flash('Login successful', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login failed. Check your username and password', 'danger')
+    else:
+        return render_template("login.html", title="Log In")
