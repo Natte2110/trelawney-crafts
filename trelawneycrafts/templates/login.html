@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block content %}
+
+<header class="masthead">
+  <div class="container px-4 px-lg-5 login-container">
+    <div class="row gx-4 gx-lg-5 text-center justify-content-center mb-5">
+      <div class="col-lg-6">
+        <h1 class="text-white font-weight-bold">Log In</h1>
+        <hr class="divider" />
+        <form id="contactForm" method="POST" action="{{ url_for('log_in') }}"">
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="name"
+              type="text"
+              placeholder="Choose A Username"
+              name="username"
+              required
+            />
+            <label for="username">Username</label>
+            
+          </div>
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="password"
+              type="password"
+              name="password"
+              placeholder=""
+              required
+            />
+            <label for="password">Password</label>
+          </div>
+          <!-- Submit Button-->
+          <div class="d-grid">
+            <button
+              class="btn btn-primary btn-l"
+              id="submitButton"
+              type="submit"
+            >
+              Sign In
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</header>
+{% endblock %}
