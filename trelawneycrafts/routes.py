@@ -1,6 +1,14 @@
-from flask import render_template, request, redirect, url_for, session
+from flask import render_template, request, redirect, flash, url_for
 from trelawneycrafts import app, db
 from trelawneycrafts.models import User, Category, Post, Reaction, Comment
+from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(User.id))
 
 @app.route("/")
 def home():
@@ -19,7 +27,7 @@ def register():
         print(f"Current Users: {emails}")
         if request.form.get("username") not in usernames:
             if request.form.get("email") not in emails:
-                user = User(username=request.form.get("username"), password=request.form.get("username"), email=request.form.get("email"))
+                user = User(username=request.form.get("username"), password=request.form.get("password"), email=request.form.get("email"))
                 db.session.add(user)
                 db.session.commit()
                 return redirect(url_for("log_in"))
@@ -30,6 +38,7 @@ def register():
     else:
         return render_template("register.html", title="Register")
 
-@app.route("/log-in")
+@app.route("/log-in", methods=["GET", "POST"])
 def log_in():
+   
     return render_template("login.html", title="Log In")
