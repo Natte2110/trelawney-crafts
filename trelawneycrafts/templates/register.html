@@ -1,102 +1,107 @@
 {% extends "base.html" %} {% block content %}
 
 <header class="masthead">
-
-    <div class="container px-4 px-lg-5 login-container">
-        
-        <div class="row gx-4 gx-lg-5 text-center justify-content-center mb-5">
-            <div class="col-lg-6">
-               
-                    <h1 class="text-white font-weight-bold">Join The Club</h1>
-                    <hr class="divider" />
-              <form id="contactForm"  method="POST" action="{{ url_for('register') }}">
-                <!-- Name input-->
-                <div class="form-floating mb-3">
-                  <input
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    type="text"
-                    placeholder="Choose A Username"
-                    required
-                  />
-                  <label for="username">Username</label>
-                  <div class="invalid-feedback" data-sb-feedback="username:required">
-                    A name is required.
-                  </div>
-                </div>
-                <!-- Email address input-->
-                <div class="form-floating mb-3">
-                  <input
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="name@example.com"
-                    required
-                  />
-                  <label for="email">Email address</label>
-                  <div class="invalid-feedback" data-sb-feedback="email:required">
-                    An email is required.
-                  </div>
-                  <div class="invalid-feedback" data-sb-feedback="email:email">
-                    Email is not valid.
-                  </div>
-                </div>
-                <!-- Phone number input-->
-                <div class="form-floating mb-3">
-                  <input
-                    class="form-control"
-                    id="password"
-                    name="password"
-                    type="password"
-                    placeholder=""
-                    required
-                  />
-                  <label for="password">Password</label>
-                  <div class="invalid-feedback" data-sb-feedback="password:required">
-                    A password is required.
-                  </div>
-                </div>
-                
-                <!-- Submit success message-->
-                <!---->
-                <!-- This is what your users will see when the form-->
-                <!-- has successfully submitted-->
-                <div class="d-none" id="submitSuccessMessage">
-                  <div class="text-center mb-3">
-                    <div class="fw-bolder">Form submission successful!</div>
-                    To activate this form, sign up at
-                    <br />
-                    <a href="https://startbootstrap.com/solution/contact-forms"
-                      >https://startbootstrap.com/solution/contact-forms</a
-                    >
-                  </div>
-                </div>
-                <!-- Submit error message-->
-                <!---->
-                <!-- This is what your users will see when there is-->
-                <!-- an error submitting the form-->
-                <div class="d-none" id="submitErrorMessage">
-                  <div class="text-center text-danger mb-3">
-                    Error sending message!
-                  </div>
-                </div>
-                <!-- Submit Button-->
-                <div class="d-grid">
-                  <button
-                    class="btn btn-primary btn-l"
-                    id="submitButton"
-                    type="submit"
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </form>
+  <div class="container px-4 px-lg-5 login-container">
+    <div class="row gx-4 gx-lg-5 text-center justify-content-center mb-5">
+      <div class="col-lg-6">
+        <h1 class="text-white font-weight-bold">Join The Club</h1>
+        <hr class="divider" />
+        <form id="contactForm" method="POST" action="{{ url_for('register') }}">
+          <!-- Name input-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="username"
+              name="username"
+              type="text"
+              placeholder="Choose A Username"
+              required
+            />
+            <label for="username">Username</label>
+            <div class="invalid-feedback" data-sb-feedback="username:required">
+              A name is required.
             </div>
-            <p class="text-white">Already have an account? <a href="{{ url_for('log_in') }}">Log In Here</a></p>
-        </div>
-    </div>
+            {% if error == "username" %}
+            <p class="text-white">Username Is Already Used</p>
+            {% else %} {% endif %}
+          </div>
+          <!-- Email address input-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="email"
+              name="email"
+              type="email"
+              placeholder="name@example.com"
+              required
+            />
+            <label for="email">Email address</label>
+            <div class="invalid-feedback" data-sb-feedback="email:required">
+              An email is required.
+            </div>
+            <div class="invalid-feedback" data-sb-feedback="email:email">
+              Email is not valid.
+            </div>
+            {% if error == "email" %}
+            <p class="text-white">Email Is Already Registered</p>
+            {% endif %}
+          </div>
+          <!-- Phone number input-->
+          <div class="form-floating mb-3">
+            <input
+              class="form-control"
+              id="password"
+              name="password"
+              type="password"
+              placeholder=""
+              required
+            />
+            <label for="password">Password</label>
+            <div class="invalid-feedback" data-sb-feedback="password:required">
+              A password is required.
+            </div>
+          </div>
 
+          <!-- Submit success message-->
+          <!---->
+          <!-- This is what your users will see when the form-->
+          <!-- has successfully submitted-->
+          <div class="d-none" id="submitSuccessMessage">
+            <div class="text-center mb-3">
+              <div class="fw-bolder">Form submission successful!</div>
+              To activate this form, sign up at
+              <br />
+              <a href="https://startbootstrap.com/solution/contact-forms"
+                >https://startbootstrap.com/solution/contact-forms</a
+              >
+            </div>
+          </div>
+          <!-- Submit error message-->
+          <!---->
+          <!-- This is what your users will see when there is-->
+          <!-- an error submitting the form-->
+          <div class="d-none" id="submitErrorMessage">
+            <div class="text-center text-danger mb-3">
+              Error sending message!
+            </div>
+          </div>
+          <!-- Submit Button-->
+          <div class="d-grid">
+            <button
+              class="btn btn-primary btn-l"
+              id="submitButton"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
+      </div>
+      <p class="text-white">
+        Already have an account?
+        <a href="{{ url_for('log_in') }}">Log In Here</a>
+      </p>
+    </div>
+  </div>
 </header>
 {% endblock %}
