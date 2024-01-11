@@ -50,5 +50,6 @@ def log_in():
             return redirect(url_for('home'))
         else:
             flash('Login failed. Check your username and password', 'danger')
+            return render_template("login.html", title="Log In")
     else:
         return render_template("login.html", title="Log In")
