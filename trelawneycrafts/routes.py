@@ -3,6 +3,8 @@ from trelawneycrafts import app, db
 from trelawneycrafts.models import User, Category, Post, Reaction, Comment
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from hashlib import sha256
+from datetime import datetime
+import os
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'log_in'
@@ -22,7 +24,26 @@ def gallery():
 @app.route("/upload", methods=["GET", "POST"])
 @login_required
 def upload():
-    return render_template("upload.html", title="Create Post")
+    if request.method == "POST": 
+        if 'image' not in request.files:
+            flash('No file part')
+            return redirect(request.url)
+        image = request.files['image'] 
+        image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
+        post = Post(
+            date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'),
+            user_id = current_user.id,
+            image_url = image.filename,
+            category_id = request.form.get("category"),
+            content = request.form.get("content"),
+            title = request.form.get("title")
+            )
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('home'))
+    else:
+        categories = list(Category.query.order_by(Category.category_name).all())
+        return render_template("upload.html", title="Create Post", categories=categories)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
