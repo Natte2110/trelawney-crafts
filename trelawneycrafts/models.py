@@ -30,10 +30,11 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id", ondelete="CASCADE"), nullable=False)
     image_url = db.Column(db.String(100), unique=True, nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey("category.id", ondelete="CASCADE"), nullable=False)
-
+    title = db.Column(db.String(64), nullable=False)
+    content = db.Column(db.String(300))
     def __repr__(self):
-        return "#{0} - Date: {1} | Posted By: {2} | Image: {3} | Category: {4}".format(
-            self.id, self.date, self.user_id, self.image_url, self.category_id
+        return "#{0} - Date: {1} | Posted By: {2} | Image: {3} | Category: {4} | Title: {5} | Content: {6}".format(
+            self.id, self.date, self.user_id, self.image_url, self.category_id, self.title, self.content
         )
         
 class Reaction(db.Model):
