@@ -19,6 +19,11 @@ def home():
 def gallery():
     return render_template("gallery.html", title="Gallery")
 
+@app.route("/upload", methods=["GET", "POST"])
+@login_required
+def upload():
+    return render_template("upload.html", title="Create Post")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST": 
