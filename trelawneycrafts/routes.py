@@ -22,8 +22,6 @@ def gallery():
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "POST": 
-        usernames = [t[0] for t in list(User.query.with_entities(User.username).all())]
-        emails = [t[0] for t in list(User.query.with_entities(User.email).all())]
         new_username = request.form.get("username")
         new_email = request.form.get("email")
         hashed_password = sha256(request.form.get("password").encode("utf-8")).hexdigest()
