@@ -19,9 +19,7 @@ class Category(db.Model):
     category_name = db.Column(db.String(50), unique=True, nullable=False)
     
     def __repr__(self):
-        return "#{0} - Category: {1}".format(
-            self.id, self.category_name
-        )
+        return self.category_name
     
 class Post(db.Model):
     # schema for the Post model
