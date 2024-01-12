@@ -1,0 +1,80 @@
+{% extends "base.html" %} {% block content %}
+<header class="masthead">
+  <div class="container-xl px-4 mt-4 account-edit">
+    <div class="row">
+      <div class="col-xl-8">
+        <!-- Account details card-->
+        <div class="card mb-4">
+          <div class="card-header">Create Post</div>
+          <div class="card-body">
+            <form method="POST" enctype="multipart/form-data" action="{{ url_for('upload') }}">
+              <div class="col-xl-4">
+                <div class="card mb-4 mb-xl-0">
+                  <div class="card-header">Upload Your Image</div>
+                  <div class="card-body text-center">
+                    <img
+                      id="image-preview"
+                      class="img-account-profile mb-2"
+                      src=""
+                      alt=""
+                    />
+                    <div class="small font-italic text-muted mb-4">
+                      JPG or PNG no larger than 5 MB
+                    </div>
+                    <input
+                      id="image"
+                      name="image"
+                      class="btn btn-primary"
+                      type="file"
+                      accept="image/*"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+              <!-- Form Group (Title)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="title">Title</label>
+                <input
+                  maxlength="64"
+                  class="form-control"
+                  id="title"
+                  type="text"
+                  placeholder="Enter your post title"
+                  name="title"
+                  value=""
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label class="small mb-1" for="category">Category</label>
+                <select name="category" class="form-control" id="category">
+                    {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.category_name }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+              <!-- Form Group (Content)-->
+              <div class="mb-3">
+                <label class="small mb-1" for="content">Content</label>
+                <textarea
+                  maxlength="300"
+                  class="form-control"
+                  name="content"
+                  placeholder="Feel free to add some information about your post!"
+                  id="content"
+                  cols="30"
+                  rows="10"
+                ></textarea>
+              </div>
+              <!-- Create Post Button-->
+              <button class="btn btn-primary" type="submit">Create Post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+<script src="{{ url_for('static', filename='js/post.js') }}"></script>
+{% endblock %}
