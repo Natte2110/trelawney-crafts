@@ -19,7 +19,49 @@ def home():
 
 @app.route("/gallery")
 def gallery():
-    return render_template("gallery.html", title="Gallery")
+    posts = list(Post.query.order_by(Post.date).all())
+    for post in posts:
+        post.user = User.query.filter_by(id=post.user_id).first().username
+    for post in posts:
+        count = Reaction.query.filter_by(post_id=post.id).all()
+        user_ids = [user_id[0] for user_id in db.session.query(Reaction.user_id).filter_by(post_id=post.id).all()]
+        if count is not None:
+            post.like_count = len(count)
+            post.liked_by = user_ids
+        else:
+            post.like_count = 0
+            post.liked_by = 0
+    path_to_images = '/'.join(app.config['UPLOAD_FOLDER'].split("/")[-2:])
+    return render_template("gallery.html", title="Gallery", posts=posts, path=path_to_images)
+
+@app.route("/reaction_count/<int:post_id>", methods=["GET", "POST"])
+def reaction_count(post_id):
+    print(post_id, current_user.id)
+    count = Reaction.query.filter_by(post_id=post_id).all()
+    if count is not None:
+        return str(len(count))
+    else:
+        return "0"
+
+@app.route("/add_reaction/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def add_reaction(post_id):
+    print(post_id, current_user.id)
+    reaction = Reaction(
+        date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'), 
+        user_id=current_user.id, 
+        post_id=post_id)
+    db.session.add(reaction)
+    db.session.commit()
+    return redirect(url_for('gallery'))
+
+@app.route("/remove_reaction/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def remove_reaction(post_id):
+    reaction = Reaction.query.filter_by(post_id=post_id, user_id=current_user.id).first()
+    db.session.delete(reaction)
+    db.session.commit()
+    return redirect(url_for('gallery'))
 
 @app.route("/upload", methods=["GET", "POST"])
 @login_required
@@ -40,7 +82,7 @@ def upload():
             )
         db.session.add(post)
         db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('gallery'))
     else:
         categories = list(Category.query.order_by(Category.category_name).all())
         return render_template("upload.html", title="Create Post", categories=categories)
