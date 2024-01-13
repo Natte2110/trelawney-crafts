@@ -22,16 +22,22 @@
 </div>
 
 <div class="container-xl px-4 mt-4 gallery-posts">
-{% for post in posts %}
-  <div class="post">
+  {% for post in posts %}
+  <div id="{{ post.id }}" class="post">
     <div class="post-title">{{ post.title }}</div>
 
-    <img class="" src="{{ url_for('static', filename=path+'/'+post.image_url)}}" alt="">
+    <img
+      class=""
+      src="{{ url_for('static', filename=path+'/'+post.image_url)}}"
+      alt=""
+    />
     <div class="post-information">{{ post.user }}: {{ post.content }}</div>
+    <div class="post-actions">
+      <div class="post-like"><i class="bi bi-hand-thumbs-up"></i> {{ post.like_count }}</div>
+      <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
+    </div>
   </div>
-<!-- <div>
-  
-</div> -->
-{% endfor %} 
-</div>
-{% endblock %}
+    {% endfor %}
+  </div>
+  {% endblock %}
+
