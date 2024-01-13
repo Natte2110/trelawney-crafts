@@ -609,11 +609,73 @@ progress {
   padding: 0 4px;
 }
 
-.post{
-  flex: 50%;
-  max-width: 50%;
-  padding: 1rem;
+.post {
+    flex: 45%;
+    max-width: 45%;
+    padding: 1rem;
+    position: relative;
+    margin: 2.5%;
+    margin-bottom: 10px;
+}
+
+.post-title {
+  float: left;
+  position: absolute;
+  left: 1%;
+  top: 0px;
+  z-index: 1000;
+  background-color: var(--tart-2);
+  padding: 2px 10px;
+  border-radius: 10px 0 10px 0;
+  color: #FFFFFF;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.post-actions {
+  float: left;
+  position: absolute;
+  right: 1%;
+  top: 0px;
+  z-index: 1000;
+  color: #FFFFFF;
+  font-weight: bold;
   
+}
+
+.post-information {
+  background-color: var(--tart-2);
+  padding: 8px;
+  color: #FFFFFF;
+  word-wrap: break-word;
+  border-radius: 0 0 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.post-like {
+  background-color: var(--tart-6);
+  padding: 2px 5px;
+  border-radius: 0 0 0 10px;
+  float: left;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.liked{
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+
+.post-comment {
+  background-color: var(--tart-6);
+  padding: 2px 5px;
+  border-radius: 0 10px 0 0;
+  float: right;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.post-comment:hover, .post-like:hover{
+  background-color: var(--tart-7);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  cursor: pointer;
 }
 
 .post img{
@@ -621,7 +683,7 @@ progress {
   vertical-align: middle;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  border-radius: 10px;
+  border-radius: 10px 10px 0 0;
 }
 
 .list-unstyled {
