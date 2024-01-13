@@ -598,6 +598,32 @@ progress {
   }
 }
 
+#image-preview{
+  max-width: 20%;
+  max-height: 20%;
+}
+
+.gallery-posts{
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+.post{
+  flex: 50%;
+  max-width: 50%;
+  padding: 1rem;
+  
+}
+
+.post img{
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  border-radius: 10px;
+}
+
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -11292,6 +11318,7 @@ header.gallery {
   height: 100vh;
   overflow: hidden;
   background-size: cover;
+  transition: filter 500ms;
 }
 
 .login-container{
