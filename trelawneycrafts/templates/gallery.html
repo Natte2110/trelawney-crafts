@@ -21,38 +21,51 @@
   </div>
 </div>
 
-<div class="container-xl px-4 mt-4 gallery-posts">
-  {% for post in posts %}
-  <div id="{{ post.id }}" class="post">
-    <div class="post-title">{{ post.title }}</div>
-
-    <img
-      class=""
-      src="{{ url_for('static', filename=path+'/'+post.image_url)}}"
-      alt=""
-    />
-    <div class="post-information">{{ post.user }}: {{ post.content }}</div>
-    <div class="post-actions">
-      {% if current_user.id in post.liked_by %}
-      <div id="{{ post.id }}" class="post-like liked">
-        <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
-      </div>
-      {% else %}
-      <div id="{{ post.id }}" class="post-like">
-        <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
-      </div>
-      {% endif %}
-      <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
-    </div>
+<div id="gallery">
+  <div class="container-fluid p-0">
+        {% for post in posts %}
+          <div class="post gallery-box" id="{{ post.id }}">
+            <div class="post-title">{{ post.title }}</div>
+              <!-- <a class="gallery-box" href="{{ url_for('static', filename=path+'/'+post.image_url)}}" title="{{ post.user }} - {{ post.title }}"> -->
+                  <img class="img-fluid" src="{{ url_for('static', filename=path+'/'+post.image_url)}}" alt="..." />
+                  <div class="gallery-box-caption">
+                      <div class="project-category text-white-50">{{ post.user }}</div>
+                      <div class="project-name">{{ post.content }}</div>
+                  </div>
+              </a>
+              <div class="post-actions">
+                {% if current_user.is_authenticated %}
+                  {% if current_user.id in post.liked_by %}
+                  <div id="{{ post.id }}" class="post-like liked">
+                    <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
+                  </div>
+                  {% else %}
+                  <div id="{{ post.id }}" class="post-like">
+                    <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
+                  </div>
+                  {% endif %}
+                  <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
+                  {% else %}
+                  <div id="{{ post.id }}" class="post-like disabled">
+                    <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
+                  </div>
+                  <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
+                {% endif %}
+              </div>
+          </div>
+          {% endfor %}
   </div>
-  {% endfor %}
 </div>
+
 <script>
   var postLikeDiv = document.querySelectorAll(".post-like");
 
   postLikeDiv.forEach(function (element) {
     element.addEventListener("click", function () {
-      if (element.classList[1] == "liked") {
+      if (element.classList[1] == "disabled") {
+        location.replace("/log-in")
+      }
+      else if (element.classList[1] == "liked") {
         element.classList.remove("liked");
         fetch(`/remove_reaction/${element.id}`, {
           method: "POST",
