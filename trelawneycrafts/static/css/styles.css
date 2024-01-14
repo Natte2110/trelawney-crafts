@@ -624,7 +624,7 @@ progress {
   top: 0px;
   z-index: 1000;
   background-color: var(--tart-2);
-  padding: 2px 10px;
+  padding: 4px 10px;
   border-radius: 10px 0 10px 0;
   color: #FFFFFF;
   font-weight: bold;
@@ -653,7 +653,7 @@ progress {
 
 .post-like {
   background-color: var(--tart-6);
-  padding: 2px 5px;
+  padding: 4px 10px;
   border-radius: 0 0 0 10px;
   float: left;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
@@ -665,16 +665,35 @@ progress {
 
 .post-comment {
   background-color: var(--tart-6);
-  padding: 2px 5px;
+  padding: 4px 10px;
   border-radius: 0 10px 0 0;
   float: right;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.post-comment:hover, .post-like:hover{
-  background-color: var(--tart-7);
+.post-comment:hover, .post-like:hover, .post-delete-icon:hover{
+  filter: brightness(0.8);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   cursor: pointer;
+}
+
+.post-delete {
+  float: left;
+  position: absolute;
+  right: 0;
+  bottom: 0px;
+  z-index: 1000;
+  color: #FFFFFF;
+  font-weight: bold;
+}
+
+.post-delete-icon {
+  background-color: var(--tart-1);
+  padding: 4px 10px;
+  border-radius: 0 0 0 10px;
+  float: left;
+  border-radius: 10px 0 10px 0;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .post img{
