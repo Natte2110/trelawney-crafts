@@ -17,11 +17,17 @@ window.addEventListener('DOMContentLoaded', event => {
             return;
         }
         if (window.scrollY === 0) {
-            navbarCollapsible.classList.remove('navbar-shrink')
-            mastheadGallery.style.filter = "";
+            navbarCollapsible.classList.remove('navbar-shrink');
+            if (mastheadGallery) {
+                mastheadGallery.style.filter = "";
+            }
+            
         } else {
-            navbarCollapsible.classList.add('navbar-shrink')
-            mastheadGallery.style.filter = "brightness(0.5)";
+            navbarCollapsible.classList.add('navbar-shrink');
+            if (mastheadGallery) {
+                mastheadGallery.style.filter = "brightness(0.5)";
+            }
+            
         }
 
     };
