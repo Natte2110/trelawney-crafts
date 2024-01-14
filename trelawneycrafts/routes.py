@@ -17,6 +17,13 @@ def load_user(id):
 def home():
     return render_template("index.html", title="Home")
 
+@app.route("/check_login")
+def check_login():
+    if current_user.id is None:
+        return redirect(url_for('log_in'))
+    else:
+        return False
+    
 @app.route("/gallery")
 def gallery():
     posts = list(Post.query.order_by(Post.date).all())
