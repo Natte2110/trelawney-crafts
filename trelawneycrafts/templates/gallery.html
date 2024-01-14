@@ -52,6 +52,11 @@
                   <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
                 {% endif %}
               </div>
+              {% if current_user.id == post.user_id %}
+              <div class="post-delete">
+                <div class="post-delete-icon"><i class="bi bi-trash"></i></div>
+              </div>
+              {% endif %}
           </div>
           {% endfor %}
   </div>
