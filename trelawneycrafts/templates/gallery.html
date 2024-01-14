@@ -36,25 +36,25 @@
               <div class="post-actions">
                 {% if current_user.is_authenticated %}
                   {% if current_user.id in post.liked_by %}
-                  <div id="{{ post.id }}" class="post-like liked">
+                  <div class="{{ post.id }} post-like liked">
                     <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
                   </div>
                   {% else %}
-                  <div id="{{ post.id }}" class="post-like">
+                  <div class="{{ post.id }} post-like">
                     <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
                   </div>
                   {% endif %}
-                  <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
+                  <div class="{{ post.id }} post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
                   {% else %}
-                  <div id="{{ post.id }}" class="post-like disabled">
+                  <div class="{{ post.id }} post-like disabled">
                     <i class="bi bi-hand-thumbs-up">{{ post.like_count }}</i>
                   </div>
-                  <div class="post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
+                  <div class="{{ post.id }} post-comment"><i class="bi bi-chat-right-dots"></i> 0</div>
                 {% endif %}
               </div>
               {% if current_user.id == post.user_id %}
               <div class="post-delete">
-                <div class="post-delete-icon"><i class="bi bi-trash"></i></div>
+                <div class="{{ post.id }} post-delete-icon"><i class="bi bi-trash"></i></div>
               </div>
               {% endif %}
           </div>
@@ -63,26 +63,26 @@
 </div>
 
 <script>
-  var postLikeDiv = document.querySelectorAll(".post-like");
+  const postLikeDiv = document.querySelectorAll(".post-like");
+  const postDeleteDiv = document.querySelectorAll(".post-delete-icon");
 
   postLikeDiv.forEach(function (element) {
     element.addEventListener("click", function () {
-      if (element.classList[1] == "disabled") {
+      if (element.classList[2] == "disabled") {
         location.replace("/log-in")
       }
-      else if (element.classList[1] == "liked") {
+      else if (element.classList[2] == "liked") {
         element.classList.remove("liked");
-        fetch(`/remove_reaction/${element.id}`, {
+        fetch(`/remove_reaction/${element.classList[0]}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json" // Set the content type based on your API requirements
             // Add any additional headers if needed
           } // Convert the data to JSON format
         }).then(setTimeout(()=>{
-          fetch(`/reaction_count/${element.id}`)
+          fetch(`/reaction_count/${element.classList[0]}`)
             .then((response) => response.json())
             .then((responseData) => {
-              console.log(responseData);
               element.childNodes[1].innerHTML = responseData;
             })
             .catch((error) => console.warn(error))
@@ -92,17 +92,16 @@
           
       } else {
         element.classList.add("liked");
-        fetch(`/add_reaction/${element.id}`, {
+        fetch(`/add_reaction/${element.classList[0]}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json" // Set the content type based on your API requirements
             // Add any additional headers if needed
           } // Convert the data to JSON format
         }).then(setTimeout(()=>{
-          fetch(`/reaction_count/${element.id}`)
+          fetch(`/reaction_count/${element.classList[0]}`)
             .then((response) => response.json())
             .then((responseData) => {
-              console.log(responseData);
               element.childNodes[1].innerHTML = responseData;
             })
             .catch((error) => console.warn(error))
@@ -112,5 +111,19 @@
       }
     });
   });
+
+  postDeleteDiv.forEach(function (element) {
+    element.addEventListener("click", () => {
+      fetch(`/delete_post/${element.classList[0]}`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json" // Set the content type based on your API requirements
+            // Add any additional headers if needed
+          } // Convert the data to JSON format
+        }).then(setTimeout(()=>{
+          location.reload();
+        }, 100))
+    })
+    })
 </script>
 {% endblock %}
