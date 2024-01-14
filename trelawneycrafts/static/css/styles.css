@@ -610,18 +610,17 @@ progress {
 }
 
 .post {
-    flex: 45%;
-    max-width: 45%;
-    padding: 1rem;
+    flex: 80%;
+    max-width: 80%;
     position: relative;
-    margin: 2.5%;
-    margin-bottom: 10px;
+    margin: 2.5% auto;
+    margin-bottom: 2rem;
 }
 
 .post-title {
   float: left;
   position: absolute;
-  left: 1%;
+  left: 0;
   top: 0px;
   z-index: 1000;
   background-color: var(--tart-2);
@@ -635,7 +634,7 @@ progress {
 .post-actions {
   float: left;
   position: absolute;
-  right: 1%;
+  right: 0;
   top: 0px;
   z-index: 1000;
   color: #FFFFFF;
@@ -679,11 +678,20 @@ progress {
 }
 
 .post img{
-  margin-top: 8px;
   vertical-align: middle;
   width: 100%;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
+}
+
+@media (max-width: 768px) {
+  .post {
+    flex: 90%;
+    max-width: 90%;
+    position: relative;
+    margin: 2.5% auto;
+    margin-bottom: 2rem;
+}
 }
 
 .list-unstyled {
@@ -11418,29 +11426,29 @@ header.masthead .h1 {
   }
 }
 
-#portfolio .container-fluid,
-#portfolio .container-sm,
-#portfolio .container-md,
-#portfolio .container-lg,
-#portfolio .container-xl,
-#portfolio .container-xxl {
+#gallery .container-fluid,
+#gallery .container-sm,
+#gallery .container-md,
+#gallery .container-lg,
+#gallery .container-xl,
+#gallery .container-xxl {
   max-width: 1920px;
 }
-#portfolio .container-fluid .portfolio-box,
-#portfolio .container-sm .portfolio-box,
-#portfolio .container-md .portfolio-box,
-#portfolio .container-lg .portfolio-box,
-#portfolio .container-xl .portfolio-box,
-#portfolio .container-xxl .portfolio-box {
+#gallery .container-fluid .gallery-box,
+#gallery .container-sm .gallery-box,
+#gallery .container-md .gallery-box,
+#gallery .container-lg .gallery-box,
+#gallery .container-xl .gallery-box,
+#gallery .container-xxl .gallery-box {
   position: relative;
   display: block;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption,
-#portfolio .container-sm .portfolio-box .portfolio-box-caption,
-#portfolio .container-md .portfolio-box .portfolio-box-caption,
-#portfolio .container-lg .portfolio-box .portfolio-box-caption,
-#portfolio .container-xl .portfolio-box .portfolio-box-caption,
-#portfolio .container-xxl .portfolio-box .portfolio-box-caption {
+#gallery .container-fluid .gallery-box .gallery-box-caption,
+#gallery .container-sm .gallery-box .gallery-box-caption,
+#gallery .container-md .gallery-box .gallery-box-caption,
+#gallery .container-lg .gallery-box .gallery-box-caption,
+#gallery .container-xl .gallery-box .gallery-box-caption,
+#gallery .container-xxl .gallery-box .gallery-box-caption {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11452,16 +11460,17 @@ header.masthead .h1 {
   text-align: center;
   opacity: 0;
   color: #fff;
-  background: rgba(244, 98, 58, 0.9);
+  background: rgba(55, 55, 55, 0.9);
   transition: opacity 0.25s ease;
   text-align: center;
+  border-radius: 10px;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-category,
-#portfolio .container-sm .portfolio-box .portfolio-box-caption .project-category,
-#portfolio .container-md .portfolio-box .portfolio-box-caption .project-category,
-#portfolio .container-lg .portfolio-box .portfolio-box-caption .project-category,
-#portfolio .container-xl .portfolio-box .portfolio-box-caption .project-category,
-#portfolio .container-xxl .portfolio-box .portfolio-box-caption .project-category {
+#gallery .container-fluid .gallery-box .gallery-box-caption .project-category,
+#gallery .container-sm .gallery-box .gallery-box-caption .project-category,
+#gallery .container-md .gallery-box .gallery-box-caption .project-category,
+#gallery .container-lg .gallery-box .gallery-box-caption .project-category,
+#gallery .container-xl .gallery-box .gallery-box-caption .project-category,
+#gallery .container-xxl .gallery-box .gallery-box-caption .project-category {
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -11469,19 +11478,19 @@ header.masthead .h1 {
   font-weight: 600;
   text-transform: uppercase;
 }
-#portfolio .container-fluid .portfolio-box .portfolio-box-caption .project-name,
-#portfolio .container-sm .portfolio-box .portfolio-box-caption .project-name,
-#portfolio .container-md .portfolio-box .portfolio-box-caption .project-name,
-#portfolio .container-lg .portfolio-box .portfolio-box-caption .project-name,
-#portfolio .container-xl .portfolio-box .portfolio-box-caption .project-name,
-#portfolio .container-xxl .portfolio-box .portfolio-box-caption .project-name {
+#gallery .container-fluid .gallery-box .gallery-box-caption .project-name,
+#gallery .container-sm .gallery-box .gallery-box-caption .project-name,
+#gallery .container-md .gallery-box .gallery-box-caption .project-name,
+#gallery .container-lg .gallery-box .gallery-box-caption .project-name,
+#gallery .container-xl .gallery-box .gallery-box-caption .project-name,
+#gallery .container-xxl .gallery-box .gallery-box-caption .project-name {
   font-size: 1.2rem;
 }
-#portfolio .container-fluid .portfolio-box:hover .portfolio-box-caption,
-#portfolio .container-sm .portfolio-box:hover .portfolio-box-caption,
-#portfolio .container-md .portfolio-box:hover .portfolio-box-caption,
-#portfolio .container-lg .portfolio-box:hover .portfolio-box-caption,
-#portfolio .container-xl .portfolio-box:hover .portfolio-box-caption,
-#portfolio .container-xxl .portfolio-box:hover .portfolio-box-caption {
+#gallery .container-fluid .gallery-box:hover .gallery-box-caption,
+#gallery .container-sm .gallery-box:hover .gallery-box-caption,
+#gallery .container-md .gallery-box:hover .gallery-box-caption,
+#gallery .container-lg .gallery-box:hover .gallery-box-caption,
+#gallery .container-xl .gallery-box:hover .gallery-box-caption,
+#gallery .container-xxl .gallery-box:hover .gallery-box-caption {
   opacity: 1;
 }
