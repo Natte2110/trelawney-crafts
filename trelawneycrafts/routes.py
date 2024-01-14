@@ -4,10 +4,12 @@ from trelawneycrafts.models import User, Category, Post, Reaction, Comment
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 from hashlib import sha256
 from datetime import datetime
+from sqlalchemy import desc
 import os
 
 login_manager = LoginManager(app)
 login_manager.login_view = 'log_in'
+PATH_TO_IMAGES = '/'.join(app.config['UPLOAD_FOLDER'].split("/")[-2:])
 
 @login_manager.user_loader
 def load_user(id):
@@ -26,11 +28,11 @@ def check_login():
     
 @app.route("/gallery")
 def gallery():
-    posts = list(Post.query.order_by(Post.date).all())
+    posts = list(Post.query.order_by(desc(Post.id)).all())
     for post in posts:
         post.user = User.query.filter_by(id=post.user_id).first().username
-    for post in posts:
         count = Reaction.query.filter_by(post_id=post.id).all()
+        post.category = Category.query.filter_by(id=post.category_id).first().category_name
         user_ids = [user_id[0] for user_id in db.session.query(Reaction.user_id).filter_by(post_id=post.id).all()]
         if count is not None:
             post.like_count = len(count)
@@ -38,8 +40,7 @@ def gallery():
         else:
             post.like_count = 0
             post.liked_by = 0
-    path_to_images = '/'.join(app.config['UPLOAD_FOLDER'].split("/")[-2:])
-    return render_template("gallery.html", title="Gallery", posts=posts, path=path_to_images)
+    return render_template("gallery.html", title="Gallery", posts=posts, path=PATH_TO_IMAGES)
 
 @app.route("/reaction_count/<int:post_id>", methods=["GET", "POST"])
 def reaction_count(post_id):
