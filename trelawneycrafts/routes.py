@@ -93,6 +93,13 @@ def upload():
     else:
         categories = list(Category.query.order_by(Category.category_name).all())
         return render_template("upload.html", title="Create Post", categories=categories)
+    
+@app.route("/delete_post/<int:post_id>", methods=["GET", "POST"])
+def delete_post(post_id):
+    post = Post.query.filter_by(id=post_id).first()
+    db.session.delete(post)
+    db.session.commit()
+    return redirect(url_for('gallery'))
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
