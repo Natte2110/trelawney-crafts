@@ -29,8 +29,13 @@
               <!-- <a class="gallery-box" href="{{ url_for('static', filename=path+'/'+post.image_url)}}" title="{{ post.user }} - {{ post.title }}"> -->
                   <img class="img-fluid" src="{{ url_for('static', filename=path+'/'+post.image_url)}}" alt="..." />
                   <div class="gallery-box-caption">
+                      <div class="project-category text-white-50">{{ post.date }}</div>
+                      <hr>
+                      <div class="project-category text-white-100">{{ post.category }}</div>
                       <div class="project-category text-white-50">{{ post.user }}</div>
+                      <hr>
                       <div class="project-name">{{ post.content }}</div>
+
                   </div>
               </a>
               <div class="post-actions">
@@ -54,7 +59,11 @@
               </div>
               {% if current_user.id == post.user_id %}
               <div class="post-delete">
-                <div class="{{ post.id }} post-delete-icon"><i class="bi bi-trash"></i></div>
+                <a href="#" class="tooltip-test" title="Delete Post">
+                <div class="{{ post.id }} post-delete-icon">
+                  <i class="bi bi-trash"></i>
+                </div>
+              </a>
               </div>
               {% endif %}
           </div>
@@ -62,68 +71,26 @@
   </div>
 </div>
 
-<script>
-  const postLikeDiv = document.querySelectorAll(".post-like");
-  const postDeleteDiv = document.querySelectorAll(".post-delete-icon");
+<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentPostTitle">Modal Title</h5>
+        <button type="button" id="comment-exit" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="comments"></div>
+        <textarea name="comment-content" class="form-control" id="comment-content" cols="20" rows="5"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="comment-close">Close</button>
+        <button type="button" class="btn btn-primary" id="comment-add">Add Comment</button>
+      </div>
+    </div>
+  </div>
+</div>
 
-  postLikeDiv.forEach(function (element) {
-    element.addEventListener("click", function () {
-      if (element.classList[2] == "disabled") {
-        location.replace("/log-in")
-      }
-      else if (element.classList[2] == "liked") {
-        element.classList.remove("liked");
-        fetch(`/remove_reaction/${element.classList[0]}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json" // Set the content type based on your API requirements
-            // Add any additional headers if needed
-          } // Convert the data to JSON format
-        }).then(setTimeout(()=>{
-          fetch(`/reaction_count/${element.classList[0]}`)
-            .then((response) => response.json())
-            .then((responseData) => {
-              element.childNodes[1].innerHTML = responseData;
-            })
-            .catch((error) => console.warn(error))
-          }, 100
-        )
-        )
-          
-      } else {
-        element.classList.add("liked");
-        fetch(`/add_reaction/${element.classList[0]}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json" // Set the content type based on your API requirements
-            // Add any additional headers if needed
-          } // Convert the data to JSON format
-        }).then(setTimeout(()=>{
-          fetch(`/reaction_count/${element.classList[0]}`)
-            .then((response) => response.json())
-            .then((responseData) => {
-              element.childNodes[1].innerHTML = responseData;
-            })
-            .catch((error) => console.warn(error))
-          }, 100
-        )
-        )
-      }
-    });
-  });
-
-  postDeleteDiv.forEach(function (element) {
-    element.addEventListener("click", () => {
-      fetch(`/delete_post/${element.classList[0]}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json" // Set the content type based on your API requirements
-            // Add any additional headers if needed
-          } // Convert the data to JSON format
-        }).then(setTimeout(()=>{
-          location.reload();
-        }, 100))
-    })
-    })
-</script>
+<script src="{{ url_for('static', filename='js/gallery-actions.js') }}"></script>
 {% endblock %}
