@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, flash, url_for
+from flask import render_template, request, redirect, flash, url_for, jsonify
 from trelawneycrafts import app, db
 from trelawneycrafts.models import User, Category, Post, Reaction, Comment
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -31,20 +31,24 @@ def gallery():
     posts = list(Post.query.order_by(desc(Post.id)).all())
     for post in posts:
         post.user = User.query.filter_by(id=post.user_id).first().username
-        count = Reaction.query.filter_by(post_id=post.id).all()
+        count_likes = Reaction.query.filter_by(post_id=post.id).all()
+        count_comments = Comment.query.filter_by(post_id=post.id).all()
         post.category = Category.query.filter_by(id=post.category_id).first().category_name
         user_ids = [user_id[0] for user_id in db.session.query(Reaction.user_id).filter_by(post_id=post.id).all()]
-        if count is not None:
-            post.like_count = len(count)
+        if count_likes is not None:
+            post.like_count = len(count_likes)
             post.liked_by = user_ids
         else:
             post.like_count = 0
             post.liked_by = 0
+        if count_comments is not None:
+            post.comment_count = len(count_comments)
+        else:
+            post.comment_count = 0
     return render_template("gallery.html", title="Gallery", posts=posts, path=PATH_TO_IMAGES)
 
 @app.route("/reaction_count/<int:post_id>", methods=["GET", "POST"])
 def reaction_count(post_id):
-    print(post_id, current_user.id)
     count = Reaction.query.filter_by(post_id=post_id).all()
     if count is not None:
         return str(len(count))
@@ -54,7 +58,6 @@ def reaction_count(post_id):
 @app.route("/add_reaction/<int:post_id>", methods=["GET", "POST"])
 @login_required
 def add_reaction(post_id):
-    print(post_id, current_user.id)
     reaction = Reaction(
         date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'), 
         user_id=current_user.id, 
@@ -62,6 +65,31 @@ def add_reaction(post_id):
     db.session.add(reaction)
     db.session.commit()
     return redirect(url_for('gallery'))
+
+@app.route("/get_comments/<int:post_id>")
+def get_comments(post_id):
+    comments = Comment.query.filter_by(post_id=post_id).all()
+    comments_list = [
+        {'id': comment.id, 
+         'content': comment.content,
+         'user': User.query.filter_by(id=comment.user_id).first().username,
+         'date': comment.date
+         } for comment in comments]
+    return jsonify(comments_list)
+
+@app.route("/add_comment/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def add_comment(post_id):
+    data = request.json
+    comment_content = data.get('commentContent')
+    comment = Comment(
+        date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'), 
+        user_id=current_user.id, 
+        post_id=post_id,
+        content=comment_content)
+    db.session.add(comment)
+    db.session.commit()
+    return "/gallery"
 
 @app.route("/remove_reaction/<int:post_id>", methods=["GET", "POST"])
 @login_required
