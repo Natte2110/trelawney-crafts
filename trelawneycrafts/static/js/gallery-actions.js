@@ -1,6 +1,21 @@
 const postLikeDiv = document.querySelectorAll(".post-like");
 const postDeleteDiv = document.querySelectorAll(".post-delete-icon");
 const postCommentDiv = document.querySelectorAll(".post-comment");
+let openPost;
+const getComments = (post_id) => {
+    fetch(`/get_comments/${post_id}`)
+        .then((response) => response.json())
+        .then((commentsArray) => {
+            console.log(commentsArray)
+            let comments = ``
+            commentsArray.forEach((comment) => {
+                comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`;
+            });
+            console.log(comments);
+            $('#comments').html(comments);
+        })
+        .catch((error) => console.warn(error))
+}
 
 postLikeDiv.forEach(function (element) {
     element.addEventListener("click", function () {
@@ -50,12 +65,8 @@ postLikeDiv.forEach(function (element) {
 
 postCommentDiv.forEach(function (element) {
     element.addEventListener("click", () => {
-        fetch(`/get_comments/${element.classList[0]}`)
-            .then((response) => response.json())
-            .then((responseData) => {
-                console.log(responseData)
-            })
-            .catch((error) => console.warn(error))
+        openPost = element.classList[0];
+        getComments(openPost);
         $('#comment-modal').modal('toggle')
         let post = document.getElementById(element.classList[0]);
         $('#comment-modal').addClass(element.classList[0]);
@@ -78,10 +89,9 @@ $('#comment-add').click(() => {
             commentContent: commentContent
         }),
     })
-        .then(response => response.json())
-        .then(data => {
-            // Handle the response from the server
-            console.log(data);
+        .then(() => {
+            getComments(openPost);
+            $('#comment-content').val("")
         })
         .catch(error => {
             console.error('Error:', error);
