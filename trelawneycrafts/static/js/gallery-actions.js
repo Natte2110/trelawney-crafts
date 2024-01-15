@@ -17,6 +17,11 @@ const getComments = (post_id) => {
                 comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`;
             });
             $('#comments').html(comments);
+            postCommentDiv.forEach(element => {
+                if (element.classList[0] == post_id) {
+                    element.innerHTML = `<i class="bi bi-chat-right-dots"></i> ${commentsArray.length}`
+                }
+            })
         })
         .catch((error) => console.warn(error))
 }
