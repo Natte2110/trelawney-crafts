@@ -48,6 +48,54 @@ postLikeDiv.forEach(function (element) {
     });
 });
 
+postCommentDiv.forEach(function (element) {
+    element.addEventListener("click", () => {
+        fetch(`/get_comments/${element.classList[0]}`)
+            .then((response) => response.json())
+            .then((responseData) => {
+                console.log(responseData)
+            })
+            .catch((error) => console.warn(error))
+        $('#comment-modal').modal('toggle')
+        let post = document.getElementById(element.classList[0]);
+        $('#comment-modal').addClass(element.classList[0]);
+        $('#comment-content').val("");
+        let title = post.childNodes[1].innerText;
+        $('#comment-title').text(title);
+    })
+})
+
+$('#comment-add').click(() => {
+    let commentContent = $('#comment-content').val();
+    console.log($('#comment-modal').attr("class").split(" ")[2])
+    let postId = $('#comment-modal').attr("class").split(" ")[2];
+    fetch(`/add_comment/${postId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            commentContent: commentContent
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            // Handle the response from the server
+            console.log(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+})
+
+$('#comment-close').click(() => {
+    $('#comment-modal').modal('toggle');
+})
+
+$('#comment-exit').click(() => {
+    $('#comment-modal').modal('toggle');
+})
+
 postDeleteDiv.forEach(function (element) {
     element.addEventListener("click", () => {
         fetch(`/delete_post/${element.classList[0]}`, {
