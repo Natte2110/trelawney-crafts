@@ -2,16 +2,20 @@ const postLikeDiv = document.querySelectorAll(".post-like");
 const postDeleteDiv = document.querySelectorAll(".post-delete-icon");
 const postCommentDiv = document.querySelectorAll(".post-comment");
 let openPost;
+
+/** 
+* Requests an array of comments on the selected post from the Backend and displays them in the 
+* @summary If the description is long, write your summary here. Otherwise, feel free to remove this.
+* @param {Number} post_id - The id of the post to be searched for in the DB
+*/
 const getComments = (post_id) => {
     fetch(`/get_comments/${post_id}`)
         .then((response) => response.json())
         .then((commentsArray) => {
-            console.log(commentsArray)
             let comments = ``
             commentsArray.forEach((comment) => {
                 comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`;
             });
-            console.log(comments);
             $('#comments').html(comments);
         })
         .catch((error) => console.warn(error))
@@ -111,9 +115,8 @@ postDeleteDiv.forEach(function (element) {
         fetch(`/delete_post/${element.classList[0]}`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json" // Set the content type based on your API requirements
-                // Add any additional headers if needed
-            } // Convert the data to JSON format
+                "Content-Type": "application/json"
+            }
         }).then(setTimeout(() => {
             location.reload();
         }, 100))
