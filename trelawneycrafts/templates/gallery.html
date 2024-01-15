@@ -22,7 +22,7 @@
 </div>
 
 <div id="gallery">
-  <div class="container-fluid p-0">
+  <div class="container-fluid p-0 gallery-posts">
         {% for post in posts %}
           <div class="post gallery-box" id="{{ post.id }}">
             <div class="post-title">{{ post.title }}</div>
@@ -72,7 +72,7 @@
 </div>
 
 <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="comment-title">Modal Title</h5>
