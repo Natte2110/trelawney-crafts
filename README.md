@@ -1,7 +1,7 @@
 # [Trelawney Crafts]()
 
-![Python](https://img.shields.io/static/v1?label=python&message=3.6.7&color=blue) 
-![Flask](https://img.shields.io/static/v1?label=flask&message=3.0.0&color=092E20)
+![Python](https://img.shields.io/static/v1?label=python&message=3.11.2&color=blue) 
+![Flask](https://img.shields.io/static/v1?label=flask&message=2.2.0&color=092E20)
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/Natte2110/trelawney-crafts?color=orange) ![GitHub pull requests](https://img.shields.io/github/issues-pr/Natte2110/trelawney-crafts)
 
