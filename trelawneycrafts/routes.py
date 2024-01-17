@@ -14,16 +14,34 @@ PATH_TO_IMAGES = '/'.join(app.config['UPLOAD_FOLDER'].split("/")[-2:])
 
 @login_manager.user_loader
 def load_user(id):
+    """Loads the current user and returns it as a query object.
+
+    Arguments:
+        id -- The id of the user, this will be used to search the USER database table for the corresponding entry.
+
+    Returns:
+        A User object returned from a query on the User table.
+    """
     return User.query.get(int(id))
 
 
 @app.route("/")
 def home():
+    """Provides routing for the website's home page
+
+    Returns:
+        The index.html page with the title of "Home"
+    """
     return render_template("index.html", title="Home")
 
 
 @app.route("/check_login")
 def check_login():
+    """Used to check whether the current users session is available.
+
+    Returns:
+        If the user is not logged in, they will be redirected to the log in page.
+    """
     if fl.current_user.id is None:
         return redirect(url_for('log_in'))
     else:
@@ -32,6 +50,11 @@ def check_login():
 
 @app.route("/gallery")
 def gallery():
+    """Runs a query to retrieve all user posts, and attributes to each one the poster ID, its reactions and the comment count.
+
+    Returns:
+        The gallery.html page with the attributed posts as objects.
+    """
     posts = list(Post.query.order_by(desc(Post.id)).all())
     for post in posts:
         post.user = User.query.filter_by(id=post.user_id).first().username
@@ -61,6 +84,14 @@ def gallery():
 
 @app.route("/reaction_count/<int:post_id>", methods=["GET", "POST"])
 def reaction_count(post_id):
+    """Gets the number of reactions on a given post.
+
+    Arguments:
+        post_id -- The id of the post to be checked
+
+    Returns:
+        An integer pertaining to the number of Reaction entries attributed to that post ID
+    """
     count = Reaction.query.filter_by(post_id=post_id).all()
     if count is not None:
         return str(len(count))
@@ -71,6 +102,14 @@ def reaction_count(post_id):
 @app.route("/add_reaction/<int:post_id>", methods=["GET", "POST"])
 @fl.login_required
 def add_reaction(post_id):
+    """Adds a reaction to the chosen post.
+
+    Arguments:
+        post_id -- The ID of the post to have a reaction added to it.
+
+    Returns:
+        The gallery.html page.
+    """
     reaction = Reaction(
         date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'),
         user_id=fl.current_user.id,
@@ -82,6 +121,14 @@ def add_reaction(post_id):
 
 @app.route("/get_comments/<int:post_id>")
 def get_comments(post_id):
+    """Retrieves all comments that are related to a specific post.
+
+    Arguments:
+        post_id -- The ID of the post that will be queried to return comments.
+
+    Returns:
+        A JSON Object containing information about all comments on the post.
+    """
     comments = Comment.query.filter_by(post_id=post_id).all()
     count_comments = Comment.query.filter_by(post_id=post_id).all()
     comments_list = [
@@ -97,6 +144,14 @@ def get_comments(post_id):
 @app.route("/add_comment/<int:post_id>", methods=["GET", "POST"])
 @fl.login_required
 def add_comment(post_id):
+    """Adds a comment entry into the comments database table
+
+    Arguments:
+        post_id -- The ID of the post which will be linked to the comment.
+
+    Returns:
+        The path to the gallery page.
+    """
     data = request.json
     comment_content = data.get('commentContent')
     comment = Comment(
@@ -112,6 +167,14 @@ def add_comment(post_id):
 @app.route("/remove_reaction/<int:post_id>", methods=["GET", "POST"])
 @fl.login_required
 def remove_reaction(post_id):
+    """Removes a reaction from a given post.
+
+    Arguments:
+        post_id -- The ID of the post that will have the reaction removed.
+
+    Returns:
+        The gallery page
+    """
     reaction = Reaction.query.filter_by(post_id=post_id, user_id=fl.current_user.id).first()
     db.session.delete(reaction)
     db.session.commit()
@@ -121,6 +184,11 @@ def remove_reaction(post_id):
 @app.route("/upload", methods=["GET", "POST"])
 @fl.login_required
 def upload():
+    """Allows a user to upload a picture and information regarding their own post. Stores the uploaded picture locally.
+
+    Returns:
+        The upload page if GET, or the gallery page if the user submits a post.
+    """
     if request.method == "POST":
         if 'image' not in request.files:
             flash('No file part')
@@ -145,6 +213,14 @@ def upload():
 
 @app.route("/delete_post/<int:post_id>", methods=["GET", "POST"])
 def delete_post(post_id):
+    """Deletes a post with the chosen post ID
+
+    Arguments:
+        post_id -- The ID of the post that will be deleted.
+
+    Returns:
+        The gallery page.
+    """
     post = Post.query.filter_by(id=post_id).first()
     db.session.delete(post)
     db.session.commit()
@@ -153,6 +229,12 @@ def delete_post(post_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    """Allows a new user to register for an account on the site 
+    and stores their information within the 'user' table.
+
+    Returns:
+        The login page upon successfil registration
+    """
     if request.method == "POST":
         new_username = request.form.get("username")
         new_email = request.form.get("email")
@@ -173,6 +255,11 @@ def register():
 
 @app.route("/log-in", methods=["GET", "POST"])
 def log_in():
+    """Handles user logins by checking if the details are within the the user table.
+
+    Returns:
+        The home page upon successful login.
+    """
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
@@ -189,6 +276,11 @@ def log_in():
 @app.route("/account", methods=["GET", "POST"])
 @fl.login_required
 def account():
+    """Handles user account updating by changing their database entry.
+
+    Returns:
+        An updated account page.
+    """
     user = {
         "username": fl.current_user.username,
         "email": fl.current_user.email
@@ -234,5 +326,10 @@ def account():
 @app.route("/logout")
 @fl.login_required
 def logout():
+    """Logs the user out of their account
+
+    Returns:
+        The home page.
+    """
     fl.logout_user()
     return redirect(url_for('home'))
