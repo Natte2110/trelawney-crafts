@@ -23,6 +23,10 @@ The users of this website will be able to upload images and information regardin
 2. [**Features**](#features)
     - [**Current Features**](#current-features)
     - [**Planned Features**](#planned-features)
+3. [**Technologies Used**](#technologies-used)
+    - [**Development Technologies**](#development-technologies)
+    - [**Front-End Technologies**](#front-end-technologies)
+    - [**Back-End Technologies**](#back-end-technologies)
 
 ---
 
@@ -129,3 +133,14 @@ In lieu with the project requirements, I have implemented all necessary features
 -   **Deleting User Account** - Once logged in, the user is able to delete their account using the 'account' page in order to permanently remove their account from the database and the website.
 
 -   **Deleting Of Comments** - If a user is logged in, they are able to delete comments posted by themself in a similar fashion to deleting posts.
+
+## Technologies Used
+
+### Development Technologies
+
+- ![Balsamiq Wireframes](https://img.shields.io/static/v1?label=Balsamiq&message=4.7.4&color=CC0200)
+    - [Balsamiq](https://balsamiq.com/) - Balsamiq was used in order to create intuitive wireframes during the initial design process.
+- ![GitHub](https://img.shields.io/static/v1?label=GitHub&message=Natte2110&color=181717&logo=github&logoColor=ffffff)
+    - [GitHub](https://github.com/) - GitHub was used to store and manage the project within a combined online repository.
+- ![Visual Studio Code](https://img.shields.io/static/v1?label=VS%20Code&message=1.85.1&color=007ACC&logo=visual%20studio%20code&logoColor=ffffff)
+    - [VS Code](https://code.visualstudio.com/) - Visual Studio Code was used as the primary development environment for the project.
