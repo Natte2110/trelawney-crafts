@@ -20,6 +20,9 @@ The users of this website will be able to upload images and information regardin
         - [**Typography**](#typography)
     - [**Wireframes**](#wireframes)
     - [**Database Design**](#database-design)
+2. [**Features**](#features)
+    - [**Current Features**](#current-features)
+    - [**Planned Features**](#planned-features)
 
 ---
 
@@ -100,3 +103,29 @@ There is also another table in order to store the names of *categories*
 This is a relational database handled by [PostgreSQL](https://www.postgresql.org/) which uses primary and foreign keys from each table in order to relate entries to eachother.
 
 <img src="./design/database-design.png">
+
+## Features
+
+In lieu with the project requirements, I have implemented all necessary features. The below is a list of current features on the site and how they align to the requirements.
+
+### Existing Features
+
+-   **Creating A User Account** - Any user of the site can create an account on the website which allows them to perform more login-required actions. The user accounts are stored within the `user` database table
+
+-   **Updating Account Details** - Once the user has a created account and has logged in, they can view their account page in order to update their details such as their username or email. This allows them to have restricted editing access over their own entry within the `user` table.
+
+-   **Viewing Of Posts** - On the `gallery` page, users are able to view the posts created by other users in order of *most recent first*.
+
+-   **Reacting To Posts** - If a user is logged in, they are able to "React" to a post, similar to a "like" on social media. This reaction is stored within the `reaction` table and is linked to the post via a relationship field.
+
+-   **Commenting On Posts** - If a user is logged in, they are able to comment on a post, which will store their username and comment content within the `comment` database table and will be linked to the post they left it on. Other users will then be able to view their comments as part of the same post.
+
+-   **Creating A Post** - If a user is logged in, they can create their own post by uploading a photo and providing a title, category and any more information about the post that they wish. This is then checked and stored within the `post` database table and will appear on the Gallery page.
+
+-   **Deleting A Post** - If a user is logged in, they will be able to delete only their own posts on the gallery page. A 'Delete' icon will be displayed within the post if the logged in user is the creator of that specific post. This will delete the post from the `post` database table, and will CASCADE in order to delete any related reactions or comments.
+
+### Planned Features
+
+-   **Deleting User Account** - Once logged in, the user is able to delete their account using the 'account' page in order to permanently remove their account from the database and the website.
+
+-   **Deleting Of Comments** - If a user is logged in, they are able to delete comments posted by themself in a similar fashion to deleting posts.
