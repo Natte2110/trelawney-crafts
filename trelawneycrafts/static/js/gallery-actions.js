@@ -12,15 +12,43 @@ const getComments = (post_id) => {
     fetch(`/get_comments/${post_id}`)
         .then((response) => response.json())
         .then((commentsArray) => {
+            const currentUserID = commentsArray[0].current_user;
+            if (currentUserID == null) {
+                $('#comment-content').attr('disabled', 'disabled');
+                $('#comment-content').attr('placeholder', 'Please log in to comment.');
+                $('#comment-add').attr('disabled', 'disabled');
+            } else {
+                $('#comment-content').removeAttr("disabled");
+                $('#comment-content').attr('placeholder', 'Type your comment here...');
+                $('#comment-add').removeAttr("disabled");
+            }
+            console.log(commentsArray)
             let comments = ``
-            commentsArray.forEach((comment) => {
-                comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`;
+            commentsArray[1].forEach((comment) => {
+                if (currentUserID == comment.userid) {
+                    comments += `<div class="comment"><a class="comment-delete ${comment.id}"><i class="bi bi-trash"></i></a><p><b>${comment.user}:</b> ${comment.content} </p></div>`
+                } else {comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`}
+                
             });
             $('#comments').html(comments);
             postCommentDiv.forEach(element => {
                 if (element.classList[0] == post_id) {
-                    element.innerHTML = `<i class="bi bi-chat-right-dots"></i> ${commentsArray.length}`
+                    element.innerHTML = `<i class="bi bi-chat-right-dots"></i> ${commentsArray[1].length}`
                 }
+            })
+            const commentDelete = document.querySelectorAll(".comment-delete");
+            commentDelete.forEach(function (element) {
+                element.addEventListener("click", () => {
+                    console.log(element.classList[1])
+                    fetch(`/remove_comment/${element.classList[1]}`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }).then(setTimeout(() => {
+                        getComments(post_id)
+                    }, 100))
+                })
             })
         })
         .catch((error) => console.warn(error))
@@ -80,6 +108,9 @@ postCommentDiv.forEach(function (element) {
         let post = document.getElementById(element.classList[0]);
         $('#comment-modal').addClass(element.classList[0]);
         $('#comment-content').val("");
+        let imgLink = document.getElementById(`${element.classList[0]}-img`).src;
+        $("#modal-image").css('background-image', `url("${imgLink}")`);
+        //.attr("src", document.getElementById(`${element.classList[0]}-img`).src);
         let title = post.childNodes[1].innerText;
         $('#comment-title').text(title);
     })
