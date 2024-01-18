@@ -132,12 +132,17 @@ def get_comments(post_id):
     comments = Comment.query.filter_by(post_id=post_id).all()
     count_comments = Comment.query.filter_by(post_id=post_id).all()
     comments_list = [
+        {"current_user":fl.current_user.id},
+        [
         {'id': comment.id,
          'content': comment.content,
          'user': User.query.filter_by(id=comment.user_id).first().username,
+         'userid': comment.user_id,
          'date': comment.date,
          'count': len(count_comments)
          } for comment in comments]
+    ]
+    
     return jsonify(comments_list)
 
 
@@ -161,7 +166,23 @@ def add_comment(post_id):
         content=comment_content)
     db.session.add(comment)
     db.session.commit()
-    return "/gallery"
+    return jsonify({"success":True })
+
+@app.route("/remove_comment/<int:comment_id>", methods=["GET", "POST"])
+@fl.login_required
+def remove_comment(comment_id):
+    """Deletes a comment from a post
+
+    Arguments:
+        comment_id -- The ID of the comment which will be removed.
+
+    Returns:
+        The path to the gallery page.
+    """
+    comment = Comment.query.filter_by(id=comment_id).first()
+    db.session.delete(comment)
+    db.session.commit()
+    return jsonify({"success":True })
 
 
 @app.route("/remove_reaction/<int:post_id>", methods=["GET", "POST"])
