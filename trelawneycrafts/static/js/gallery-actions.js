@@ -22,7 +22,6 @@ const getComments = (post_id) => {
                 $('#comment-content').attr('placeholder', 'Type your comment here...');
                 $('#comment-add').removeAttr("disabled");
             }
-            console.log(commentsArray)
             let comments = ``
             commentsArray[1].forEach((comment) => {
                 if (currentUserID == comment.userid) {
@@ -39,7 +38,6 @@ const getComments = (post_id) => {
             const commentDelete = document.querySelectorAll(".comment-delete");
             commentDelete.forEach(function (element) {
                 element.addEventListener("click", () => {
-                    console.log(element.classList[1])
                     fetch(`/remove_comment/${element.classList[1]}`, {
                         method: "POST",
                         headers: {
@@ -110,7 +108,6 @@ postCommentDiv.forEach(function (element) {
         $('#comment-content').val("");
         let imgLink = document.getElementById(`${element.classList[0]}-img`).src;
         $("#modal-image").css('background-image', `url("${imgLink}")`);
-        //.attr("src", document.getElementById(`${element.classList[0]}-img`).src);
         let title = post.childNodes[1].innerText;
         $('#comment-title').text(title);
     })
@@ -118,7 +115,6 @@ postCommentDiv.forEach(function (element) {
 
 $('#comment-add').click(() => {
     let commentContent = $('#comment-content').val();
-    console.log($('#comment-modal').attr("class").split(" ")[2])
     let postId = $('#comment-modal').attr("class").split(" ")[2];
     fetch(`/add_comment/${postId}`, {
         method: 'POST',
