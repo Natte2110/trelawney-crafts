@@ -71,9 +71,9 @@
     rgba(255, 255, 255, 0.15),
     rgba(255, 255, 255, 0)
   );
-  --bs-body-font-family: Montserrat, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --bs-body-font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --bs-body-font-size: 1rem;
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
@@ -142,8 +142,8 @@ h1,
 .h1 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 500;
   line-height: 1.2;
@@ -595,23 +595,23 @@ progress {
   }
 }
 
-#image-preview{
+#image-preview {
   max-width: 20%;
   max-height: 20%;
 }
 
-.gallery-posts{
+.gallery-posts {
   display: flex !important;
   flex-wrap: wrap;
   padding: 0 4px;
 }
 
 .post {
-    flex: 40%;
-    max-width: 30%;
-    position: relative;
-    margin: 2.5% auto;
-    margin-bottom: 2rem;
+  flex: 40%;
+  max-width: 30%;
+  position: relative;
+  margin: 2.5% auto;
+  margin-bottom: 2rem;
 }
 
 .post-title {
@@ -623,9 +623,10 @@ progress {
   background-color: var(--tart-2);
   padding: 4px 10px;
   border-radius: 10px 0 10px 0;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .post-actions {
@@ -634,18 +635,18 @@ progress {
   right: 0;
   top: 0px;
   z-index: 1000;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
-  
 }
 
 .post-information {
   background-color: var(--tart-2);
   padding: 8px;
-  color: #FFFFFF;
+  color: #ffffff;
   word-wrap: break-word;
   border-radius: 0 0 10px 10px;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
 .post-like {
@@ -653,11 +654,13 @@ progress {
   padding: 4px 10px;
   border-radius: 0 0 0 10px;
   float: left;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.liked{
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+.liked {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .post-comment {
@@ -665,12 +668,16 @@ progress {
   padding: 4px 10px;
   border-radius: 0 10px 0 0;
   float: right;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.post-comment:hover, .post-like:hover, .post-delete-icon:hover{
+.post-comment:hover,
+.post-like:hover,
+.post-delete-icon:hover {
   filter: brightness(0.8);
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
   cursor: pointer;
 }
 
@@ -680,7 +687,7 @@ progress {
   right: 0;
   bottom: 0px;
   z-index: 1000;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -690,14 +697,137 @@ progress {
   border-radius: 0 0 0 10px;
   float: left;
   border-radius: 10px 0 10px 0;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.post img{
+.post img {
   vertical-align: middle;
   width: 100%;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   border-radius: 10px;
+}
+
+.content {
+  height: 100vh;
+  width: 100%;
+}
+
+.content-text {
+  width: 100%;
+}
+
+#comment-exit {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  border: none;
+}
+
+.modal {
+  border-radius: 7px;
+  overflow: hidden;
+  background-color: transparent;
+}
+.modal p {
+  line-height: 1.5;
+  font-size: 18px;
+}
+.modal .logo a img {
+  width: 30px;
+}
+.modal .modal-content {
+  background-color: transparent;
+  border: none;
+  border-radius: 7px;
+}
+.modal .modal-content .modal-body {
+  border-radius: 7px;
+  overflow: hidden;
+  background-color: #efefef;
+  padding-left: 0px;
+  padding-right: 0px;
+  -webkit-box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9);
+  min-height: 50vh;
+  box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9);
+}
+.modal .modal-content .modal-body h2 {
+  font-size: 18px;
+}
+.modal .modal-content .modal-body p {
+  color: #777;
+  font-size: 14px;
+}
+.modal .modal-content .modal-body h3 {
+  color: #000;
+  font-size: 22px;
+}
+.modal .modal-content .modal-body .close-btn {
+  color: #000;
+}
+.modal .modal-content .modal-body .promo-img {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 50%;
+  flex: 0 0 50%;
+}
+.modal .modal-content .modal-body .promo-img .price {
+  top: 20px;
+  left: 20px;
+  position: absolute;
+  color: #fff;
+}
+
+.bg-image {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.modal-footer {
+  position: absolute;
+  bottom: 0;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.main-content {
+  min-height: 50vh;
+}
+.line {
+  position: relative;
+  padding-bottom: 20px;
+}
+.line:after {
+  left: 50%;
+  bottom: 0;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+  position: absolute;
+  content: "";
+  width: 70px;
+  height: 1px;
+  background: #ccc;
+}
+
+#comments {
+  text-align: justify !important;
+  max-height: 25vh;
+  overflow: scroll;
+}
+
+.comment-delete {
+  float: right;
+  color: #000;
+}
+
+.comment-delete i {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.comment-delete i:hover{
+  color: rgba(0, 0, 0, 1);
 }
 
 @media (max-width: 992px) {
@@ -707,24 +837,27 @@ progress {
     position: relative;
     margin: 2.5% auto;
     margin-bottom: 2rem;
-}
+  }
+  #modal-image {
+    display: none;
+  }
 }
 
 @media (min-width: 992px) {
   .post {
     flex: 40%;
     max-width: 40%;
-}
+  }
 }
 
 @media (min-width: 1200px) {
   .post {
-    flex: 30%;
+    flex: 50%;
     max-width: 30%;
-}
+  }
 }
 
-.comments{
+.comments {
   font-size: 1rem;
 }
 
@@ -3010,9 +3143,9 @@ textarea.form-control.is-invalid {
 .btn {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
-  --bs-btn-font-family: Montserrat, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  --bs-btn-font-family: Montserrat, -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji,
+    Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
   --bs-btn-font-size: 1rem;
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.5;
@@ -11339,16 +11472,16 @@ hr.divider-light {
   transition: background-color 0.2s ease;
 }
 #mainNav .navbar-brand {
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   color: #212529;
 }
 #mainNav .navbar-nav .nav-item .nav-link {
   color: #6c757d;
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-weight: 700;
   font-size: 0.9rem;
@@ -11425,11 +11558,11 @@ header.gallery {
   transition: filter 500ms;
 }
 
-.login-container{
+.login-container {
   padding-top: 20vh;
 }
 
-.gallery-intro{
+.gallery-intro {
   padding-top: 40vh;
   padding-bottom: 40vh;
 }
@@ -11505,8 +11638,8 @@ header.masthead .h1 {
 #gallery .container-lg .gallery-box .gallery-box-caption .project-category,
 #gallery .container-xl .gallery-box .gallery-box-caption .project-category,
 #gallery .container-xxl .gallery-box .gallery-box-caption .project-category {
-  font-family: "Montserrat", -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 0.85rem;
   font-weight: 600;
