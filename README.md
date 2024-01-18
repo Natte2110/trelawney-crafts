@@ -128,11 +128,11 @@ In lieu with the project requirements, I have implemented all necessary features
 
 -   **Deleting A Post** - If a user is logged in, they will be able to delete only their own posts on the gallery page. A 'Delete' icon will be displayed within the post if the logged in user is the creator of that specific post. This will delete the post from the `post` database table, and will CASCADE in order to delete any related reactions or comments.
 
+-   **Deleting Of Comments** - If a user is logged in, they are able to delete comments posted by themself in a similar fashion to deleting posts.
+
 ### Planned Features
 
 -   **Deleting User Account** - Once logged in, the user is able to delete their account using the 'account' page in order to permanently remove their account from the database and the website.
-
--   **Deleting Of Comments** - If a user is logged in, they are able to delete comments posted by themself in a similar fashion to deleting posts.
 
 ## Technologies Used
 
