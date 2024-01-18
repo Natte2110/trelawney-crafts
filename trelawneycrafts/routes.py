@@ -131,8 +131,12 @@ def get_comments(post_id):
     """
     comments = Comment.query.filter_by(post_id=post_id).all()
     count_comments = Comment.query.filter_by(post_id=post_id).all()
+    if fl.current_user.is_authenticated:
+        current_user_id = fl.current_user.id
+    else:
+        current_user_id = None
     comments_list = [
-        {"current_user":fl.current_user.id},
+        {"current_user":current_user_id},
         [
         {'id': comment.id,
          'content': comment.content,
