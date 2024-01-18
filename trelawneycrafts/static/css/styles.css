@@ -865,14 +865,10 @@ progress {
   background-color: var(--tart-2);
 }
 
-.footer .topper {
-  -webkit-box-shadow: -20px -20px 0 0 rgba(52, 58, 64, 0.2);
-  box-shadow: 0px 0px 20px 20px rgba(52, 58, 64, 0.2);
-  padding: 20px;
-  background-color: var(--tart-2);
-  top: -150px;
-  position: relative;
-  filter: brightness(1.1);
+@media (max-width: 576px) {
+  .footer{
+    text-align: center;
+  }
 }
 
 .footer .footer-logo {
@@ -11570,6 +11566,7 @@ header.masthead {
   background-repeat: no-repeat;
   background-attachment: scroll;
   background-size: cover;
+  height: 100vh;
 }
 
 header.gallery {
