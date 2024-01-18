@@ -134,6 +134,8 @@ In lieu with the project requirements, I have implemented all necessary features
 
 -   **Deleting User Account** - Once logged in, the user is able to delete their account using the 'account' page in order to permanently remove their account from the database and the website.
 
+-   **Sorting Posts By Popularity** - Within the posts on the gallery page, the user is able to sort the returned posts by order of popularity.
+
 ## Technologies Used
 
 ### Development Technologies
