@@ -750,7 +750,7 @@ progress {
   padding-left: 0px;
   padding-right: 0px;
   -webkit-box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9);
-  min-height: 50vh;
+  /* min-height: 50vh; */
   box-shadow: 0 10px 50px -10px rgba(0, 0, 0, 0.9);
 }
 .modal .modal-content .modal-body h2 {
@@ -869,6 +869,16 @@ progress {
   .footer{
     text-align: center;
   }
+}
+
+#delete-account{
+  float: right;
+  background-color: var(--tart-1);
+  border-color: var(--tart-1);
+}
+
+.delete-account-div{
+  height: 35vh;
 }
 
 .footer .footer-logo {
