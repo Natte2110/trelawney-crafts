@@ -246,6 +246,8 @@ def delete_post(post_id):
         The gallery page.
     """
     post = Post.query.filter_by(id=post_id).first()
+    if os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)):
+        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url))
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('gallery'))
