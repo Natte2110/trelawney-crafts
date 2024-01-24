@@ -351,6 +351,11 @@ def account():
 @app.route("/delete-account", methods=["POST"])
 @fl.login_required
 def delete_account():
+    
+    posts = Post.query.filter_by(user_id=fl.current_user.id).all()
+    for post in posts:
+        if os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)):
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url))
     data = request.json
     password = data.get('password')
     user = User.query.filter_by(id=fl.current_user.id).first()
