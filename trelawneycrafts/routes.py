@@ -294,7 +294,7 @@ def log_in():
             fl.login_user(user)
             return redirect(url_for('home'))
         else:
-            return render_template("login.html", title="Log In")
+            return render_template("login.html", title="Log In", error="t")
     else:
         return render_template("login.html", title="Log In")
 
