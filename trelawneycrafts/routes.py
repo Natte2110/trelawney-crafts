@@ -216,7 +216,6 @@ def upload():
     """
     if request.method == "POST":
         if 'image' not in request.files:
-            flash('No file part')
             return redirect(request.url)
         image = request.files['image']
         image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
@@ -347,6 +346,19 @@ def account():
                 error="t",
                 message="Username already taken. Please try a different one.")
 
+@app.route("/delete-account", methods=["POST"])
+@fl.login_required
+def delete_account():
+    data = request.json
+    password = data.get('password')
+    user = User.query.filter_by(id=fl.current_user.id).first()
+    if sha256(password.encode("utf-8")).hexdigest() == user.password:
+        fl.logout_user()
+        db.session.delete(user)
+        db.session.commit()
+        return {"success":True}
+    else:
+        return {"success":False}
 
 @app.route("/logout")
 @fl.login_required
