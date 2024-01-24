@@ -57,7 +57,7 @@
       id="mainNav"
     >
       <div class="container px-4 px-lg-5">
-        <a class="navbar-brand" href="#page-top">Trelawney Crafts</a>
+        <a class="navbar-brand" href="{{ url_for('home') }}">Trelawney Crafts</a>
         <button
           class="navbar-toggler navbar-toggler-right"
           type="button"
@@ -117,16 +117,16 @@
             <div class="col-sm">
               <h3>Gallery</h3>
               <ul class="list-unstyled links">
-                <li><a href="#">User Posts</a></li>
-                <li><a href="#">Create a Post</a></li>
+                <li><a href="{{ url_for('gallery') }}">User Posts</a></li>
+                <li><a href="{{ url_for('upload') }}">Create a Post</a></li>
               </ul>
             </div>
             <div class="col-sm">
               <h3>Account</h3>
               <ul class="list-unstyled links">
-                <li><a href="#">Register</a></li>
-                <li><a href="#">Sign In</a></li>
-                <li><a href="#">Account Settings</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('log_in') }}">Sign In</a></li>
+                <li><a href="{{ url_for('account') }}">Account Settings</a></li>
               </ul>
             </div>
             <div class="col-sm">
