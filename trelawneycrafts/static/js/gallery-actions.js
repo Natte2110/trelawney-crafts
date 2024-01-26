@@ -26,8 +26,8 @@ const getComments = (post_id) => {
             commentsArray[1].forEach((comment) => {
                 if (currentUserID == comment.userid) {
                     comments += `<div class="comment"><a class="comment-delete ${comment.id}"><i class="bi bi-trash"></i></a><p><b>${comment.user}:</b> ${comment.content} </p></div>`
-                } else {comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>`}
-                
+                } else { comments += `<div class="comment"><p><b>${comment.user}:</b> ${comment.content}</p></div>` }
+
             });
             $('#comments').html(comments);
             postCommentDiv.forEach(element => {
@@ -154,3 +154,24 @@ postDeleteDiv.forEach(function (element) {
         }, 100))
     })
 })
+
+$('#category-filter').change(function () {
+    let categoryFilter = $("#category-filter").val();
+    let posts = document.querySelectorAll('.post');
+    let filteredPosts = 0;
+    if (categoryFilter.toLowerCase() == "all") {
+        posts.forEach((post) => {
+            post.style.display = "block";
+        })
+    } else {
+        posts.forEach((post) => {
+            let postCategory = post.querySelector('.project-category');
+            if (postCategory.innerHTML.trim().toLowerCase() === categoryFilter.toLowerCase()) {
+                post.style.display = "block";
+                filteredPosts += 1;
+            } else {
+                post.style.display = "none";
+            }
+        })
+    }
+});
