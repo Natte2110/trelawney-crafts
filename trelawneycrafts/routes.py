@@ -55,6 +55,7 @@ def gallery():
     Returns:
         The gallery.html page with the attributed posts as objects.
     """
+    categories = list(Category.query.order_by(Category.category_name).all())
     posts = list(Post.query.order_by(desc(Post.id)).all())
     for post in posts:
         post.user = User.query.filter_by(id=post.user_id).first().username
@@ -79,7 +80,8 @@ def gallery():
         "gallery.html",
         title="Gallery",
         posts=posts,
-        path=PATH_TO_IMAGES)
+        path=PATH_TO_IMAGES,
+        categories=categories)
 
 
 @app.route("/reaction_count/<int:post_id>", methods=["GET", "POST"])
