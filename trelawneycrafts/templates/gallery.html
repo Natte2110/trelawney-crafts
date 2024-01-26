@@ -29,10 +29,10 @@
               <!-- <a class="gallery-box" href="{{ url_for('static', filename=path+'/'+post.image_url)}}" title="{{ post.user }} - {{ post.title }}"> -->
                   <img id="{{ post.id }}-img" class="img-fluid" src="{{ url_for('static', filename=path+'/'+post.image_url)}}" alt="..." />
                   <div class="gallery-box-caption">
-                      <div class="project-category text-white-50">{{ post.date }}</div>
+                      <div class="project-date text-white-50">{{ post.date }}</div>
                       <hr>
                       <div class="project-category text-white-100">{{ post.category }}</div>
-                      <div class="project-category text-white-50">{{ post.user }}</div>
+                      <div class="project-name text-white-50">{{ post.user }}</div>
                       <hr>
                       <div class="project-name">{{ post.content }}</div>
 
