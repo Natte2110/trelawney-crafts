@@ -178,7 +178,44 @@ Various testing methods and processes were used in order to ensure the website n
 
 Testing the site across different devices and browsers allowed the site to be used by anyone irrespective of their device parameters.
 
-### Validators
+### Validation
+
+**HTML**
+
+All HTML files were checked using the [W3C HTML](https://validator.w3.org/) Validator. As the validator does not recognise Jinja templating, the pages were checked via their URL's once the project was deployed.
+
+Any errors that were identified were rectified, and checked again once the project was redeployed.
+
+<details>
+<summary>CLICK HERE to view screenshots of the validation pages</summary>
+
+<img src="./testing/html-validation-index.png">
+
+<img src="./testing/html-validation-gallery.png">
+
+<img src="./testing/html-validation-register.png">
+
+<img src="./testing/html-validation-log-in.png">
+
+</details>
+
+**CSS**
+
+<img src="./testing/css-validation.png" center>
+
+The CSS was checked using the [W3C CSS](https://jigsaw.w3.org/css-validator/#validate_by_uri) Validation service and returned no critical errors.
+
+Warnings were returned, however these were due to rules such as `-webkit-text-size-adjust` being vendor extensions.
+
+**JavaScript**
+
+- `post.js` - A few errors were present, however they were fixed in Commit ID `2809e4d`
+
+- `script.js` - One error pertains regarding a stay '.', however this is requred for the script.
+
+- `gallery-actions.js` - A few warnings were identified when validating this file, however they were due to "Undefined '$'". This was due to jQuery not being included in the validator so they were ignored.
+
+- `account-management` - Similar to above, all warnings excepts the ones relating to jQuery were fixed.
 
 ### User Story Testing
 
