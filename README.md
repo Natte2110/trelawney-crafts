@@ -1,3 +1,5 @@
+<img src="./design/am-i-responsive.png" center>
+
 # [Trelawney Crafts]()
 
 ![Python](https://img.shields.io/static/v1?label=python&message=3.11.2&color=blue) 
