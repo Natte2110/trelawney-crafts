@@ -27,7 +27,10 @@ The users of this website will be able to upload images and information regardin
     - [**Development Technologies**](#development-technologies)
     - [**Front-End Technologies**](#front-end-technologies)
     - [**Back-End Technologies**](#back-end-technologies)
-
+4. [**Testing**](#testing)
+    - [**Validation**](#validation)
+    - [**User Story Testing**](#user-story-testing)
+    - [**Compatibility**](#compatibility)
 ---
 
 ## UX
@@ -166,3 +169,15 @@ In lieu with the project requirements, I have implemented all necessary features
     - [Flask 2.2.0](https://flask.palletsprojects.com/en/3.0.x/) - Flask is a python module and was used to create the web server and to manage and handle the applicaiton routing.
 - ![PostgreSQL 16.1](https://img.shields.io/static/v1?label=PostgreSQL&message=16.1&color=336791&logo=postgresql)
     - [PostgreSQL 16.1](https://www.postgresql.org/) - PostgreSQL was used as the database in this project in order to store information regarding users, posts and the attributed data to them.
+
+## Testing
+
+Various testing methods and processes were used in order to ensure the website not only functioned as expected, but the code itself conforms to standards.
+
+Testing the site across different devices and browsers allowed the site to be used by anyone irrespective of their device parameters.
+
+### Validators
+
+### User Story Testing
+
+### Compatibility
