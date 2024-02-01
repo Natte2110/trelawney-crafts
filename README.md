@@ -219,4 +219,53 @@ Warnings were returned, however these were due to rules such as `-webkit-text-si
 
 ### User Story Testing
 
+In this section, The previously defined user stories will be revisited in order to ensure they have been met accordingly.
+
+-   #### As A First-Time Visitor, I want to:
+
+    -   View the site irrespective of what device or browser I am using.
+
+        The site was developed with **'Mobile-First'** in mind, meaning that the elements and how they were styled were created in such a manner that whilst being visible on desktop devices, they would also be visible on other devices, screen sizes and browsers.
+
+        Using the Chrome Developer Tools during the devlopment process, the web page was manually tested to ensure all required elements were visible when needed and the site was responsive.
+        <p align="center">
+        <img src="./testing/user-story-01.png">
+        </p>
+
+    -   Be able to view Arts & Crafts created by content uploaders.
+
+        
+
+    -   Create my own account on the website.
+
+
+
+-   #### As A Returning Visitor, I want to:
+
+    -   Update my profile information, such as my name or password.
+
+
+
+    -   Be able to freely log in and out of my account.
+
+
+
+    -   Post a comment or reaction to other user's posts.
+
+
+
+-   #### As A Frequent Visitor, I want to:
+
+    -   Upload my own photos of Artwork I made.
+
+
+
+    -   Sort the uploaded items by order of popularity.
+
+
+
+    -   Reply to comments that people have left on my posted artwork.
+
+
+
 ### Compatibility
