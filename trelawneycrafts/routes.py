@@ -379,3 +379,7 @@ def logout():
     """
     fl.logout_user()
     return redirect(url_for('home'))
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
