@@ -296,6 +296,7 @@ def log_in():
         user = User.query.filter_by(username=username).first()
         if user and (user.password == sha256(password.encode("utf-8")).hexdigest()):
             fl.login_user(user)
+            flash(f"Welcome {username}!")
             return redirect(url_for('home'))
         else:
             return render_template("login.html", title="Log In", error="t")
@@ -367,6 +368,7 @@ def delete_account():
         fl.logout_user()
         db.session.delete(user)
         db.session.commit()
+        flash("Account Successfully Deleted")
         return {"success":True}
     else:
         return {"success":False}
