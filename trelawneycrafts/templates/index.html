@@ -18,6 +18,17 @@
             Trelawney Crafts is a central hub for all that is Cornish representitive arts
           </p>
           <a class="btn btn-primary btn-xl" href="{{ url_for('gallery') }}">View Our Gallery</a>
+          <div>
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for message in messages %}
+                  <div>
+                    <h4 class="mt-4 text-white">{{ message }}</h4>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+          </div>
         </div>
       </div>
     </div>
