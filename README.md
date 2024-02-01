@@ -234,7 +234,15 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Be able to view Arts & Crafts created by content uploaders.
 
-        
+        Within the site, there is the `galley.html` page, which upon loading, queries the `post` database table and loads each user post to the page.
+
+        This is done by passing the posts from the flask back end, before being loaded into the web page using jinja templating with a `for loop` to load each post.
+
+        Hovering the mouse over, or tapping on it on a mobile device will reveal more information about the post itself.
+
+        <p align="center">
+        <img src="./testing/user-story-02.png">
+        </p>
 
     -   Create my own account on the website.
 
