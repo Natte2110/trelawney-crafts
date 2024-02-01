@@ -231,6 +231,7 @@ def upload():
             )
         db.session.add(post)
         db.session.commit()
+        flash("Post created! Scroll down to view it.")
         return redirect(url_for('gallery'))
     else:
         categories = list(Category.query.order_by(Category.category_name).all())
