@@ -6,6 +6,17 @@
       <div class="col-lg-6">
         <h1 class="text-white font-weight-bold">Log In</h1>
         <hr class="divider">
+        <div>
+          {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              {% for message in messages %}
+                <div>
+                  <h4 class="text-white">{{ message }}</h4>
+                </div>
+              {% endfor %}
+            {% endif %}
+          {% endwith %}
+        </div>
         <form id="contactForm" method="POST" action="{{ url_for('log_in') }}">
           <div class="form-floating mb-3">
             <input class="form-control" id="name" type="text" placeholder="Choose A Username" name="username" required>
