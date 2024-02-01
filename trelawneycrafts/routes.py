@@ -272,6 +272,7 @@ def register():
                 user = User(username=new_username, password=hashed_password, email=new_email)
                 db.session.add(user)
                 db.session.commit()
+                flash("Account Created Successfully")
                 return redirect(url_for("log_in"))
             else:
                 return render_template("register.html", title="Register", error="email")
