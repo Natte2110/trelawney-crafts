@@ -29,6 +29,7 @@ The users of this website will be able to upload images and information regardin
     - [**Development Technologies**](#development-technologies)
     - [**Front-End Technologies**](#front-end-technologies)
     - [**Back-End Technologies**](#back-end-technologies)
+    - [**Python Modules**](#python-modules)
 4. [**Testing**](#testing)
     - [**Validation**](#validation)
     - [**User Story Testing**](#user-story-testing)
@@ -171,6 +172,19 @@ In lieu with the project requirements, I have implemented all necessary features
     - [Flask 2.2.0](https://flask.palletsprojects.com/en/3.0.x/) - Flask is a python module and was used to create the web server and to manage and handle the applicaiton routing.
 - ![PostgreSQL 16.1](https://img.shields.io/static/v1?label=PostgreSQL&message=16.1&color=336791&logo=postgresql)
     - [PostgreSQL 16.1](https://www.postgresql.org/) - PostgreSQL was used as the database in this project in order to store information regarding users, posts and the attributed data to them.
+
+### Python Modules
+
+In this section I will highlight and explain the use of each additional python package that was used within this project.
+
+- ![Flask Login](https://img.shields.io/static/v1?label=Flask%20Login&message=0.6.3&color=blue&logo=flask&logoColor=ffffff)
+    - [Flask Login 0.6.3](https://flask-login.readthedocs.io/en/latest/) - Flask Login was used alongside Flask itself in order to manage the user accounts. First, the UserMixin was used when creating the User database table in order to allow Flask login to successfully use that table as accounts. This essentially allowed the use of carrying user sessions across different pages.
+- ![Flask SQLAlchemy](https://img.shields.io/static/v1?label=Flask%20SQLAlchemy&message=2.5.1&color=blue&logo=flask&logoColor=ffffff)
+    - [Flask SQLAlchemy 2.5.1](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/) - Used in order to allow flask to work seamlessly with the database in order to query, create and update records within it.
+- ![Hashlib](https://img.shields.io/static/v1?label=Hashlib&message=3.11.2&color=blue)
+    - [Hashlib](https://docs.python.org/3/library/hashlib.html) - Hashlib comes default with python, however it is worth mentioning its use in creating secure encrypted passwords before they a stored or read from the database in order to provide account security to the users.
+- ![Datetine](https://img.shields.io/static/v1?label=Datetine&message=3.11.2&color=blue)
+    - [Datetine](https://docs.python.org/3/library/datetime.html) - Also default with python, datetime was used in order to log the current date at which a users post was made in order for this to be attributed to the post itself.
 
 ## Testing
 
