@@ -263,7 +263,13 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Update my profile information, such as my name or password.
 
+        Once the user has created and logged into their account, they are able to access their account information allowing them to update certain profile information, such as their username or password.
 
+        Much like the creation of the account, the details are first checked within the database to ensure there is no duplication of email addresses or usernames before updating that user's record within the 'user' table.
+
+        <p align="center">
+        <img src="./testing/user-story-04.png">
+        </p>
 
     -   Be able to freely log in and out of my account.
 
