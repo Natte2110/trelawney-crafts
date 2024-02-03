@@ -11,6 +11,8 @@ This is a project for the Code Institute Milestone Project 3. Trelawney Crafts i
 
 The users of this website will be able to upload images and information regarding their most recent pieces, allowing for others to view them in a gallery-style page.
 
+View the live project [Here!](https://trelawney-crafts-174a0a88326e.herokuapp.com/)
+
 ---
 
 ## Table of Contents
@@ -379,3 +381,23 @@ This means that if a user were to delete their account, all of the posts linked 
 This ensures that if a certain item is removed, such as a post, the database is not storing extra records in related tables which will, in the long run reduce the size of the database and increase its performance during queries.
 
 ### Compatibility
+
+The sites compatability was tested across multiple devices, using my own personal devices, those of friends & family, as well as emulated devices.
+
+Below is a testing matrix created in order to show what tests were conducted across devices and web browsers
+
+| Colour | Meaning |
+|:---:|:---:|
+| ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | Works Perfectly, No Immediate Issues |
+| ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | Works mostly as intended |
+| ![#EE4B2B](https://via.placeholder.com/15/EE4B2B/EE4B2B) | Contains some issues |
+
+| Browser | Device | Responsive | Links Work As Intended | Images Displayed | Back End Functionality | Easily Navigable |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Chrome | iPhone 12 | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Chrome | MacBook Pro | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Chrome | Windows Laptop | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Safari | MacBook Pro | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Safari | iPhone 12 | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Firefox | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+| Chromium | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
