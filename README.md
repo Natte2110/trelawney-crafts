@@ -33,6 +33,7 @@ The users of this website will be able to upload images and information regardin
 4. [**Testing**](#testing)
     - [**Validation**](#validation)
     - [**User Story Testing**](#user-story-testing)
+    - [**Evidence Of CRUD**](#evidence-of-crud)
     - [**Compatibility**](#compatibility)
 ---
 
@@ -342,5 +343,39 @@ In this section, The previously defined user stories will be revisited in order 
         <p align="center">
         <img src="./testing/user-story-06.png">
         </p>
+
+### Evidence of CRUD
+
+In this section I will explain and identify how the site has different sections of CRUD activity available to its users.
+
+#### CR - Create
+
+The users are able to create:
+
+- User accounts - Stored within the `user` database table.
+- Reactions - Users can react to other posts which is stored in the `reaction` table and linked to the post using the `post_id` foreign key.
+- Posts - Stored within the `post` table.
+- Comments - Users are able to leave comments on post which are stored within the `comment` table in a similar fashion to the Reactions.
+
+#### U - Update
+
+Users are able to update their own personal account information as shown in the user story testing. Once confirmed with the server, the users account record is updated within the `user` table.
+
+#### D - Delete
+
+In a similar fashion to the create functionality, the users are able to delete:
+
+- User Accounts - On the account page users are able to delete their accounts from the database.
+- Reactions - By clicking the reaction button again, they are able to remove their reaction from the post, which is also deleted from the `reaction` database table.
+- Posts - Users are able to delete their posts using the bin item at the bottom right hand corner of their own posts.
+- Comments - In a similar fashion, users are able to remove their own comments under a post by clicking the bin icon.
+
+The tables are set up in such a way that if certain things are deleted, the attributed data stored in other tables is also deleted in the following hierarchy.
+
+**USER ACCOUNT >> POST >> COMMENT/REACTION**
+
+This means that if a user were to delete their account, all of the posts linked to their user ID will also be deleted, along with each comment and reaction attributed to the post.
+
+This ensures that if a certain item is removed, such as a post, the database is not storing extra records in related tables which will, in the long run reduce the size of the database and increase its performance during queries.
 
 ### Compatibility
