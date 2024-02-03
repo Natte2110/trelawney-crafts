@@ -313,7 +313,13 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Sort the uploaded items by it's category.
 
+        On the gallery page, the users are able to use a select box in order to sort the user-made posts by their specific categories.
 
+        This will then only display the posts with that particular category assigned to it.
+
+        <p align="center">
+        <img src="./testing/user-story-08.png">
+        </p>
 
     -   Reply to comments that people have left on my posted artwork.
 
