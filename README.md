@@ -273,7 +273,13 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Be able to freely log in and out of my account.
 
+        Any user with a created account is able to log in and out as they please using the buttons available in the navigation bar/menu.
 
+        Clicking the "Log Out" button will instantly log out the user and return them to the home page. They are then again able to log back into their account afterwards.
+
+        <p align="center">
+        <img src="./testing/user-story-05.png">
+        </p>
 
     -   Post a comment or reaction to other user's posts.
 
