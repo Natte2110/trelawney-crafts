@@ -54,7 +54,7 @@ The users of this website will be able to upload images and information regardin
 -   #### As A Frequent Visitor, I want to:
 
     -   Upload my own photos of Artwork I made.
-    -   Sort the uploaded items by order of popularity.
+    -   Sort the uploaded items by it's category.
     -   Reply to comments that people have left on my posted artwork.
 
 ### Design
@@ -297,9 +297,21 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Upload my own photos of Artwork I made.
 
+        Users with accounts are able to create their own posts to share on the website. this is done by clicking the "Post your own piece" button on the gallery page, or using the relevant links within the footer.
 
+        Once the user selects an image from their file browser, a preview is displayed so they can check their image before it is uploaded for others to see.
 
-    -   Sort the uploaded items by order of popularity.
+        They are then able to provide more information about the piece, as well as selecting one of the categories returned from the `category` database table.
+
+        The image is stored locally on the hosting server, whilst a link to said image is stored within the `post` database table, so that it is able to be linked to the post itself.
+
+        Once the post is uploaded, they are redirected back to the gallery page where they are able to view their newly made post.
+
+        <p align="center">
+        <img src="./testing/user-story-07.png">
+        </p>
+
+    -   Sort the uploaded items by it's category.
 
 
 
