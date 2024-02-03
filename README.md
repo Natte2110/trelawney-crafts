@@ -323,6 +323,10 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Reply to comments that people have left on my posted artwork.
 
+        Similar to a previous user story, the creator of a post can also comment on it in order to reply to comments that other users have left on their artwork.
 
+        <p align="center">
+        <img src="./testing/user-story-06.png">
+        </p>
 
 ### Compatibility
