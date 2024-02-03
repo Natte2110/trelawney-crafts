@@ -246,6 +246,17 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Create my own account on the website.
 
+        The registration page on the site allows users to sign up by creating a username, providing an email address, and also a password.
+
+        Before the user account is created, the database is checked to ensure that the current user information has not been used. This is so that usernames and emails can be unique and not repeated between accounts.
+
+        <p align="center">
+        <img src="./testing/user-story-03.png">
+        </p>
+
+        Once the users account has been created, they can log in to access more features within the site.
+
+        The user account is stored and retrieved from the 'user' table within the PostgreSQL database.
 
 
 -   #### As A Returning Visitor, I want to:
