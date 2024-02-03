@@ -283,7 +283,15 @@ In this section, The previously defined user stories will be revisited in order 
 
     -   Post a comment or reaction to other user's posts.
 
+        If a user is logged in, they are able to post comments as part of other user made posts. This is made possible by clicking the "Comment" icon, and entering their own personal comment in the pop up screen.
 
+        The user is also able to remove their own comment, thus deleting it from the database using the bin icon next to their comment.
+
+        The comment is immediately reflected on the users page, as well as incrementing the number of comments on that particular post.
+
+        <p align="center">
+        <img src="./testing/user-story-06.png">
+        </p>
 
 -   #### As A Frequent Visitor, I want to:
 
