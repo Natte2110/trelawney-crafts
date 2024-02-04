@@ -234,6 +234,18 @@ Warnings were returned, however these were due to rules such as `-webkit-text-si
 
 - `account-management` - Similar to above, all warnings excepts the ones relating to jQuery were fixed.
 
+**Page Speed Insights**
+
+The [Page Speed Insights](https://pagespeed.web.dev/analysis/https-trelawney-crafts-174a0a88326e-herokuapp-com/dx9d990dv4?form_factor=desktop) tool was used in order to check the website against different criteria to ensure it performs well, is suitably accessible and performs well.
+
+Please see the screenshot below for the returned scores.
+
+<p align="center">
+<img src="./testing/page-speed-insights.png">
+</p>
+
+Originally, using this tool, it was highlighted that the foreground colour of white text was not visible enough against the lighter colour behind. Following this initial check, I used the [WCAG Color Contrast Checker](https://accessibleweb.com/color-contrast-checker/) to ensure the newly chosen colour was suitable.
+
 ### User Story Testing
 
 In this section, The previously defined user stories will be revisited in order to ensure they have been met accordingly.
