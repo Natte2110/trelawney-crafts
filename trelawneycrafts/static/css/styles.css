@@ -605,7 +605,8 @@ progress {
 }
 
 .post-creation{
-  height: 100%;
+  padding-top: 15vh;
+  height: 100vh;
 }
 
 #filter-div {
