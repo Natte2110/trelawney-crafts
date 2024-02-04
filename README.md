@@ -37,6 +37,9 @@ View the live project [Here!](https://trelawney-crafts-174a0a88326e.herokuapp.co
     - [**User Story Testing**](#user-story-testing)
     - [**Evidence Of CRUD**](#evidence-of-crud)
     - [**Compatibility**](#compatibility)
+5. [**Deployment**](#deployment)
+    - [**Local Deployment**](#local-deployment)
+    - [**Remote Deployment**](#remote-deployment)
 ---
 
 ## UX
@@ -413,3 +416,138 @@ Below is a testing matrix created in order to show what tests were conducted acr
 | Safari | iPhone 12 | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
 | Firefox | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
 | Chromium | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+
+## Deployment
+
+In this section I will highlight two different ways in which you could deply this project for yourself, and also how this project was deployed for marking purposes.
+
+### Local Deployment
+
+For local deployment, you must first have installed:
+
+- ![Python](https://img.shields.io/static/v1?label=Python&message=3.11.2&color=blue&logo=python&logoColor=ffffff)
+    - [Python 3.11.2](https://www.python.org/) - To run the application itself.
+- ![Visual Studio Code](https://img.shields.io/static/v1?label=VS%20Code&message=1.85.1&color=007ACC&logo=visual%20studio%20code&logoColor=ffffff)
+    - [VS Code](https://code.visualstudio.com/) - Or any suitable IDE in order to make changes for yourself and browse the files.
+- ![PyPi](https://img.shields.io/static/v1?label=PyPi&message=23.3.2&color=blue&logo=pypi&logoColor=ffffff)
+    - [PyPi 23.3.2](https://pypi.org/project/pip/) - Or other suitable python package manager in order to install and manage python requirements.
+- ![GitHub](https://img.shields.io/static/v1?label=GitHub&message=Natte2110&color=181717&logo=github&logoColor=ffffff)
+    - [GitHub](https://github.com/) - In order to clone and manage this repository for yourself.
+- ![PostgreSQL](https://img.shields.io/static/v1?label=GitHub&message=PostgreSQL&color=blue&logo=PostgreSQL&logoColor=ffffff)
+    - [PostgreSQL](https://www.postgresql.org/) - In order to create and manage the local PostgreSQL database.
+
+I will now highlight the steps you need to take to deploy this on your own device.
+
+#### Setup
+
+1. The first step in local deployment is to clone this GitHub Repository.
+    
+    if using Visual Studio Code, when you open the window, click **"GitHub Clone"** and paste the link to this repository.
+
+    If using the GitHub CLI, type this following command:
+
+    `gh repo clone Natte2110/trelawney-crafts`
+
+2. Once you have the repository on your local machine, you need to create an `env.py` with your own variables. Please check the [sample_env.py](./sample_env.py) for an example.
+
+3. To install the python packages used in the project, type the following command into the terminal within your IDE.
+
+    `pip3 install -r requirements.txt`
+
+4. Setting up the PostgreSQL database can be done using the command line.
+
+    First, create the database using:
+
+    `psql`
+    
+    `CREATE DATABASE trelawneycrafts;`
+
+    Next, the tables can be created and initialised using the below commands:
+
+    Please ensure at this point you have correctly linked the **DB_URL** variable in the env.py. This should be ***postgresql:///trelawneycrafts***.
+
+    `python3`
+
+    `>>> from trelawneycrafts import db`
+
+    `>>> db.create_all()`
+
+    `>>> exit()`
+
+    This will create the database tables with those specified using the SQLAlchemy ORM within [models.py](./trelawneycrafts/models.py).
+
+    If you wish to check if the tables have been created, run the following commands.
+
+    `psql`
+
+    `\c trelawneycrafts`
+
+    `\dt`
+
+    This will display the created tables within the trelawneycrafts database.
+
+#### Run
+
+Once the above steps have been followed, you can run the application by typing:
+
+`python3 run.py`
+
+Please ensure your terminal is at the root directory for the project if using the terminal outside of your IDE.
+
+### Remote Deployment
+
+- ![ElephantSQL](https://img.shields.io/static/v1?label=ElephantSQL&message=PostgreSQL%20as%20a%20Service&color=79589f&logo=postgresql&logoColor=ffffff)
+    - [ElephantSQL](https://www.elephantsql.com/) - To provide a cloud based PostgreSQL database, ElephantSQL was used.
+
+    1. In order to create your own PostgreSQL instance, head to the above link and sign up for an account with Elephant SQL.
+
+    2. Next, head to the [ElephantSQL Dashboard](https://customer.elephantsql.com/instance) and click the `Create a New instance` button at the top.
+
+    3. Select a name for your instance, and use the 'tiny-turtle' instance for a free deployment. Select a region on the following page, and confirm all other details.
+
+    4. Once your instance has been created, you will need to migrate your database from elsewhere in order for it to be copied to the ElephantSQL instance.
+
+        1. Follow steps 1, 2 and 4 in the above [local deployment](#local-deployment) section to create the database on your local machine.
+
+        2. Using the [CI PostgreSQL Migration Tool](https://github.com/Code-Institute-Org/postgres-migration-tool/blob/main/reel2reel.py), type the following command into your terminal.
+
+            `python3 reel2reel.py`
+
+            This will ask you to input the URI to the database that will be copied, and then the database it will be dumped to.
+
+            For the first input, you need something similar to:
+
+            `postgres://{USER}:{PASSWORD}@127.0.0.1:5432/{DATABASE_NAME}`
+
+            Using **127.0.0.1** as the database host will look for said database on your local machine.
+
+            For the second input, head to your ElephantSQL instance, and copy the `URL` value on your instance's `Details` Tab.
+
+            This will create a dump.sql file from your locally hosted database, and dump it into the ElephantSQL database provided above.
+
+- ![Heroku](https://img.shields.io/static/v1?label=Heroku&message=trelawney-crafts&color=79589f&logo=heroku&logoColor=ffffff)
+    - [Heroku](https://dashboard.heroku.com/) - Was used in order to create a cloud based deployment of this project directly from GitHub.
+    
+    1. In order to deploy this project to Heroku yourself, first start by applying for an account at [Heroku](https://dashboard.heroku.com/). You can also log in with your GitHub or Google accounts.
+
+    2. Once you have an account, head to the [heroku dashboard](https://dashboard.heroku.com/apps) and click the `New >> Create New App` button in the top right of the screen.
+
+    3. Choose a unique name for your deployment, and then select a suitable server for the app to be hosted on.
+
+    4. Once you have created the app, head to the `Deploy` tab. Under `Deployment Method`, click the GitHub button in order to deploy the app straight from a GitHub repository.
+
+    5. In the box below, specify the name of the repository you wish to deploy from. If you have not yet, clone this repository on your own account in order to deploy it from your own GitHub account.
+
+    6. Once you have connected the required GitHub repository, select the fork you wish to deploy from and click the `Deploy` button.
+
+    7. Finally, you will need to head to the `Settings` tab in order to setup the config vars. This will link your database and provide secret keys to your app. These config vars should follow the key value pairs listed within the [sample_env.py](./sample_env.py)
+
+    <p align="center">
+    <img src="./testing/config-vars.png">
+    </p>
+
+    Hopefully the deployment process is successful, however, if you have issues, please refer to the Heroku CLI logs by typing the following command into the [Heroku CLI Terminal](https://devcenter.heroku.com/articles/heroku-cli).
+
+    `heroku logs --app={YOUR_APP_NAME}`
+
+    There, you will be able to see any error messages regarding the deployment process.
