@@ -600,6 +600,14 @@ progress {
   max-height: 20%;
 }
 
+#image {
+  width: 100%;
+}
+
+.post-creation{
+  height: 100%;
+}
+
 #filter-div {
   margin: 0 auto;
   width: fit-content;
