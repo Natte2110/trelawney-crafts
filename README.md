@@ -241,6 +241,33 @@ Warnings were returned, however these were due to rules such as `-webkit-text-si
 
 - `account-management` - Similar to above, all warnings excepts the ones relating to jQuery were fixed.
 
+**Python**
+
+- `run.py` - Only warning was a lack of whitespace at the end of the file. Corrected in commit id `666e313`
+
+- `__init__.py` - Warnings pertained to lines being too long, and whitespace where it was not needed. Fixed in commit `ca0aac1`
+
+- `routes.py` - Lots of lines were too long, so they were shortened or reduced and variables used. Whitespace warnings were also corrected in commit `451648d`.
+
+- `models.py` - Similar to other issues, only warnings were to do with whitespace and lines being too long. corrected in commit `2a17f0a`
+
+<details>
+<summary>CLICK HERE to view screenshots of the python validation pages</summary>
+
+<p align="center">
+<img src="./testing/routes.py.png">
+</p>
+
+<p align="center">
+<img src="./testing/__init__.py.png">
+</p>
+
+<p align="center">
+<img src="./testing/models.py.png">
+</p>
+
+</details>
+
 **Page Speed Insights**
 
 The [Page Speed Insights](https://pagespeed.web.dev/analysis/https-trelawney-crafts-174a0a88326e-herokuapp-com/dx9d990dv4?form_factor=desktop) tool was used in order to check the website against different criteria to ensure it performs well, is suitably accessible and performs well.
