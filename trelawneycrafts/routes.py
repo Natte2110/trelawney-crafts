@@ -17,7 +17,8 @@ def load_user(id):
     """Loads the current user and returns it as a query object.
 
     Arguments:
-        id -- The id of the user, this will be used to search the USER database table for the corresponding entry.
+        id -- The id of the user, this will be used to search the
+        USER database table for the corresponding entry.
 
     Returns:
         A User object returned from a query on the User table.
@@ -40,7 +41,8 @@ def check_login():
     """Used to check whether the current users session is available.
 
     Returns:
-        If the user is not logged in, they will be redirected to the log in page.
+        If the user is not logged in,
+        they will be redirected to the log in page.
     """
     if fl.current_user.id is None:
         return redirect(url_for('log_in'))
@@ -50,7 +52,10 @@ def check_login():
 
 @app.route("/gallery")
 def gallery():
-    """Runs a query to retrieve all user posts, and attributes to each one the poster ID, its reactions and the comment count.
+    """
+    Runs a query to retrieve all user posts,
+    and attributes to each one the poster ID, its reactions
+    and the comment count.
 
     Returns:
         The gallery.html page with the attributed posts as objects.
@@ -65,7 +70,8 @@ def gallery():
             id=post.category_id).first().category_name
         user_ids = [
             user_id[0] for user_id in
-            db.session.query(Reaction.user_id).filter_by(post_id=post.id).all()]
+            db.session.query(Reaction.user_id)
+            .filter_by(post_id=post.id).all()]
         if count_likes is not None:
             post.like_count = len(count_likes)
             post.liked_by = user_ids
@@ -92,7 +98,8 @@ def reaction_count(post_id):
         post_id -- The id of the post to be checked
 
     Returns:
-        An integer pertaining to the number of Reaction entries attributed to that post ID
+        An integer pertaining to the number of
+        Reaction entries attributed to that post ID
     """
     count = Reaction.query.filter_by(post_id=post_id).all()
     if count is not None:
@@ -138,17 +145,17 @@ def get_comments(post_id):
     else:
         current_user_id = None
     comments_list = [
-        {"current_user":current_user_id},
+        {"current_user": current_user_id},
         [
-        {'id': comment.id,
-         'content': comment.content,
-         'user': User.query.filter_by(id=comment.user_id).first().username,
-         'userid': comment.user_id,
-         'date': comment.date,
-         'count': len(count_comments)
-         } for comment in comments]
-    ]
-    
+            {'id': comment.id,
+             'content': comment.content,
+             'user': User.query.filter_by(id=comment.user_id).first().username,
+             'userid': comment.user_id,
+             'date': comment.date,
+             'count': len(count_comments)
+             } for comment in comments]
+        ]
+
     return jsonify(comments_list)
 
 
@@ -172,7 +179,8 @@ def add_comment(post_id):
         content=comment_content)
     db.session.add(comment)
     db.session.commit()
-    return jsonify({"success":True })
+    return jsonify({"success": True})
+
 
 @app.route("/remove_comment/<int:comment_id>", methods=["GET", "POST"])
 @fl.login_required
@@ -188,7 +196,7 @@ def remove_comment(comment_id):
     comment = Comment.query.filter_by(id=comment_id).first()
     db.session.delete(comment)
     db.session.commit()
-    return jsonify({"success":True })
+    return jsonify({"success": True})
 
 
 @app.route("/remove_reaction/<int:post_id>", methods=["GET", "POST"])
@@ -202,7 +210,8 @@ def remove_reaction(post_id):
     Returns:
         The gallery page
     """
-    reaction = Reaction.query.filter_by(post_id=post_id, user_id=fl.current_user.id).first()
+    reaction = Reaction.query.filter_by(
+        post_id=post_id, user_id=fl.current_user.id).first()
     db.session.delete(reaction)
     db.session.commit()
     return redirect(url_for('gallery'))
@@ -211,7 +220,9 @@ def remove_reaction(post_id):
 @app.route("/upload", methods=["GET", "POST"])
 @fl.login_required
 def upload():
-    """Allows a user to upload a picture and information regarding their own post. Stores the uploaded picture locally.
+    """
+    Allows a user to upload a picture and information regarding their own post.
+    Stores the uploaded picture locally.
 
     Returns:
         The upload page if GET, or the gallery page if the user submits a post.
@@ -234,8 +245,12 @@ def upload():
         flash("Post created! Scroll down to view it.")
         return redirect(url_for('gallery'))
     else:
-        categories = list(Category.query.order_by(Category.category_name).all())
-        return render_template("upload.html", title="Create Post", categories=categories)
+        categories = list(
+            Category.query.order_by(Category.category_name).all())
+        return render_template(
+            "upload.html",
+            title="Create Post",
+            categories=categories)
 
 
 @app.route("/delete_post/<int:post_id>", methods=["GET", "POST"])
@@ -249,8 +264,9 @@ def delete_post(post_id):
         The gallery page.
     """
     post = Post.query.filter_by(id=post_id).first()
-    if os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)):
-        os.remove(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url))
+    image_path = os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)
+    if os.path.exists(image_path):
+        os.remove(image_path)
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('gallery'))
@@ -258,7 +274,7 @@ def delete_post(post_id):
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    """Allows a new user to register for an account on the site 
+    """Allows a new user to register for an account on the site
     and stores their information within the 'user' table.
 
     Returns:
@@ -267,25 +283,39 @@ def register():
     if request.method == "POST":
         new_username = request.form.get("username")
         new_email = request.form.get("email")
-        hashed_password = sha256(request.form.get("password").encode("utf-8")).hexdigest()
+        hashed_password = sha256(request.form.get(
+            "password").encode("utf-8")).hexdigest()
         if User.query.filter_by(username=new_username).first() is None:
             if User.query.filter_by(email=new_email).first() is None:
-                user = User(username=new_username, password=hashed_password, email=new_email)
+                user = User(
+                    username=new_username,
+                    password=hashed_password,
+                    email=new_email)
                 db.session.add(user)
                 db.session.commit()
                 flash("Account Created Successfully")
                 return redirect(url_for("log_in"))
             else:
-                return render_template("register.html", title="Register", error="email")
+                return render_template(
+                    "register.html",
+                    title="Register",
+                    error="email")
         else:
-            return render_template("register.html", title="Register", error="username")
+            return render_template(
+                "register.html",
+                title="Register",
+                error="username")
     else:
-        return render_template("register.html", title="Register")
+        return render_template(
+            "register.html",
+            title="Register")
 
 
 @app.route("/log-in", methods=["GET", "POST"])
 def log_in():
-    """Handles user logins by checking if the details are within the the user table.
+    """
+    Handles user logins by checking if the
+    details are within the the user table.
 
     Returns:
         The home page upon successful login.
@@ -294,7 +324,8 @@ def log_in():
         username = request.form.get("username")
         password = request.form.get("password")
         user = User.query.filter_by(username=username).first()
-        if user and (user.password == sha256(password.encode("utf-8")).hexdigest()):
+        encrypted_password = sha256(password.encode("utf-8")).hexdigest()
+        if user and (user.password == encrypted_password):
             fl.login_user(user)
             flash(f"Welcome {username}!")
             return redirect(url_for('home'))
@@ -317,14 +348,20 @@ def account():
         "email": fl.current_user.email
     }
     if request.method == "GET":
-        return render_template("account.html", title=fl.current_user.username, user=user)
+        return render_template(
+            "account.html",
+            title=fl.current_user.username,
+            user=user)
     if request.method == "POST":
         updated_username = request.form.get("username")
         updated_email = request.form.get("email")
         account = User.query.filter_by(id=fl.current_user.id).first()
-
-        if User.query.filter_by(username=updated_username).first() is None or updated_username == fl.current_user.username:
-            if User.query.filter_by(email=updated_email).first() is None or updated_email == fl.current_user.email:
+        current_username = fl.current_user.username
+        current_email = fl.current_user.email
+        name_check = User.query.filter_by(username=updated_username).first()
+        email_check = User.query.filter_by(email=updated_email).first()
+        if name_check is None or updated_username == current_username:
+            if email_check is None or updated_email == current_email:
                 if updated_username != user["username"]:
                     account.username = updated_username
                     user["username"] = updated_username
@@ -353,14 +390,15 @@ def account():
                 error="t",
                 message="Username already taken. Please try a different one.")
 
+
 @app.route("/delete-account", methods=["POST"])
 @fl.login_required
 def delete_account():
-    
     posts = Post.query.filter_by(user_id=fl.current_user.id).all()
     for post in posts:
-        if os.path.exists(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)):
-            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], post.image_url))
+        post_image = os.path.join(app.config['UPLOAD_FOLDER'], post.image_url)
+        if os.path.exists(post_image):
+            os.remove(post_image)
     data = request.json
     password = data.get('password')
     user = User.query.filter_by(id=fl.current_user.id).first()
@@ -369,9 +407,10 @@ def delete_account():
         db.session.delete(user)
         db.session.commit()
         flash("Account Successfully Deleted")
-        return {"success":True}
+        return {"success": True}
     else:
-        return {"success":False}
+        return {"success": False}
+
 
 @app.route("/logout")
 @fl.login_required
@@ -384,9 +423,11 @@ def logout():
     fl.logout_user()
     return redirect(url_for('home'))
 
+
 @app.errorhandler(404)
 def page_not_found(error):
     return render_template('404.html'), 404
+
 
 @app.errorhandler(500)
 def internal_server_error(error):
