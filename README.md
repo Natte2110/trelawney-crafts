@@ -580,6 +580,8 @@ Below is a list of sources where I searched for certain methods or used code fro
 
 [Flask Login Documentation](https://flask-login.readthedocs.io/en/latest/) - This documentation was used in order to learn and implement the flask_login python package to manage user accounts.
 
+[Start Bootstrap](https://startbootstrap.com/themes) - Start bootstrap was used in order to speed up the initial development process by providing a baseline on which to develop.
+
 ### Tools And Software
 
 These different tools were used either in the development or documentation processes.
