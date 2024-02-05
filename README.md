@@ -234,7 +234,7 @@ Warnings were returned, however these were due to rules such as `-webkit-text-si
 
 - `post.js` - A few errors were present, however they were fixed in Commit ID `2809e4d`
 
-- `script.js` - One error pertains regarding a stay '.', however this is requred for the script.
+- `script.js` - One error pertains regarding a stray '.', however this is requred for the script.
 
 - `gallery-actions.js` - A few warnings were identified when validating this file, however they were due to "Undefined '$'". This was due to jQuery not being included in the validator so they were ignored.
 
@@ -422,7 +422,7 @@ Below is a testing matrix created in order to show what tests were conducted acr
 
 ## Deployment
 
-In this section I will highlight two different ways in which you could deply this project for yourself, and also how this project was deployed for marking purposes.
+In this section I will highlight two different ways in which you could deploy this project for yourself, and also how this project was deployed for marking purposes.
 
 ### Local Deployment
 
