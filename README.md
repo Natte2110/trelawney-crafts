@@ -559,7 +559,11 @@ Please ensure your terminal is at the root directory for the project if using th
 
 ### Code
 
-Below is a list of sources where I searched for certain methods 
+Below is a list of sources where I searched for certain methods or used code from elsewhere.
+
+[CI Database Migration Tool](https://github.com/Code-Institute-Org/postgres-migration-tool) - This was used in order to migrate my locally hosted PostgreSQL database to the ElephantSQL instance.
+
+[Flask Login Documentation](https://flask-login.readthedocs.io/en/latest/) - This documentation was used in order to learn and implement the flask_login python package to manage user accounts.
 
 ### Tools And Software
 
@@ -574,3 +578,9 @@ These different tools were used either in the development or documentation proce
 [Adobe Color](https://color.adobe.com/create/image) -  Was used in order to extract the sites colour scheme from the image of Cornish Tartan.
 
 [Lucid Chart](https://www.lucidchart.com/pages/landing?utm_source=google&utm_medium=cpc&utm_campaign=_chart_en_tier1_mixed_search_brand_exact_&km_CPC_CampaignId=1490375427&km_CPC_AdGroupID=55688909257&km_CPC_Keyword=lucid%20charts&km_CPC_MatchType=e&km_CPC_ExtensionID=&km_CPC_Network=g&km_CPC_AdPosition=&km_CPC_Creative=442433236001&km_CPC_TargetID=kwd-64262996435&km_CPC_Country=1006818&km_CPC_Device=c&km_CPC_placement=&km_CPC_target=&gad_source=1&gclid=CjwKCAiAq4KuBhA6EiwArMAw1EPQV211KvYtjxyuul8wxZInPFwWe86MEzyW9NiFahIk84N9eQe04BoC6f8QAvD_BwE) - Was used in order to create the database diagram within the [database design](#database-design)
+
+### Media
+
+The background image used across all pages was taken from [this Countryfile source](https://www.countryfile.com/go-outdoors/walks/walk-st-michaels-mount-cornwall).
+
+Images used for the default/demo posts on the site were artworks my wife had created.
