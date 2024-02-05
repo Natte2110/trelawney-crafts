@@ -37,6 +37,7 @@ View the live project [Here!](https://trelawney-crafts-174a0a88326e.herokuapp.co
     - [**User Story Testing**](#user-story-testing)
     - [**Evidence Of CRUD**](#evidence-of-crud)
     - [**Compatibility**](#compatibility)
+    - [**Issues**](#issues)
 5. [**Deployment**](#deployment)
     - [**Local Deployment**](#local-deployment)
     - [**Remote Deployment**](#remote-deployment)
@@ -419,6 +420,20 @@ Below is a testing matrix created in order to show what tests were conducted acr
 | Safari | iPhone 12 | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
 | Firefox | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
 | Chromium | Raspberry Pi | ![#FFC300](https://via.placeholder.com/15/FFC300/FFC300) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) | ![#00ff00](https://via.placeholder.com/15/00ff00/00ff00) |
+
+### Issues
+
+The whole process was mainly issue free, however I will highlight in this section a minor problem that was discovered and corrected.
+
+- During the deployment to Heroku, I noticed that the user uploaded posts would have their images deleted, leaving an empty post with just its text information stored within the database.
+
+    This is due to Heroku having an [ephemeral file system](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem) meaning it would be deployed with a fresh copy of the GitHub repository, thus the user uploaded images would be wiped, whilst the database remains.
+
+    The information that helped me understand this was found on [this](https://devcenter.heroku.com/articles/dynos#ephemeral-filesystem) heroku help post.
+
+    One solution to this would be to create an [Amazon S3 Bucket](https://aws.amazon.com/s3/) and link it to the deployed Heroku app in order to store the users uploads in a seperate cloud storage.
+
+    However, for marking purposes I decided to create posts on a locally deployed version and commit the uploaded images to the repository so that they could be contained within the fresh deployments of the Heroku app.
 
 ## Deployment
 
