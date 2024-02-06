@@ -1,3 +1,9 @@
+/**
+* @file This script uses a mix of standard JavaScript and jQuery in order to manage user actions on the gallery page.
+* From adding and removing comments/reactions on user posts to updating values on the page, this script creates dynamic responses,
+* and passes data to and from the backend.
+* @author Nathan Parsley
+*/
 const postLikeDiv = document.querySelectorAll(".post-like");
 const postDeleteDiv = document.querySelectorAll(".post-delete-icon");
 const postCommentDiv = document.querySelectorAll(".post-comment");
