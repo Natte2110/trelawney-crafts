@@ -464,6 +464,10 @@ The whole process was mainly issue free, however I will highlight in this sectio
 
     However, for marking purposes I decided to create posts on a locally deployed version and commit the uploaded images to the repository so that they could be contained within the fresh deployments of the Heroku app.
 
+Another thing worth mentioning is that the images stored within `trelawneycrafts/static/media/user_uploads` are capitalised due to the original names of the uploaded files that were uploaded using an iPhone 12. The reason this was not changed was due to the fact that this will be the case for user uploaded images.
+
+For a future fail-safe I could include a renaming feature in order to create a unique, lower case name for the user uploaded images in order to mitigate this issue.
+
 ## Deployment
 
 In this section I will highlight two different ways in which you could deploy this project for yourself, and also how this project was deployed for marking purposes.
