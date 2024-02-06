@@ -227,11 +227,20 @@ def upload():
     Returns:
         The upload page if GET, or the gallery page if the user submits a post.
     """
+    categories = list(
+            Category.query.order_by(Category.category_name).all())
     if request.method == "POST":
         if 'image' not in request.files:
             return redirect(request.url)
         image = request.files['image']
-        image.save(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
+        image_path = os.path.join(app.config['UPLOAD_FOLDER'], image.filename)
+        if os.path.exists(image_path):
+            flash("That image has already been uploaded! Please try another.")
+            return render_template(
+                "upload.html",
+                title="Create Post",
+                categories=categories)
+        image.save(image_path)
         post = Post(
             date=datetime.today().strftime('%Y-%m-%d %H:%M:%S'),
             user_id=fl.current_user.id,
@@ -245,8 +254,6 @@ def upload():
         flash("Post created! Scroll down to view it.")
         return redirect(url_for('gallery'))
     else:
-        categories = list(
-            Category.query.order_by(Category.category_name).all())
         return render_template(
             "upload.html",
             title="Create Post",
