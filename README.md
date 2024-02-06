@@ -11,6 +11,8 @@ This is a project for the Code Institute Milestone Project 3. Trelawney Crafts i
 
 The users of this website will be able to upload images and information regarding their most recent pieces, allowing for others to view them in a gallery-style page.
 
+In a similar style to Social Media, this site will provide a platform for people to share their works and socialise with one another.
+
 View the live project [Here!](https://trelawney-crafts-174a0a88326e.herokuapp.com/)
 
 ---
