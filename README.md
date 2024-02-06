@@ -452,7 +452,7 @@ Below is a testing matrix created in order to show what tests were conducted acr
 
 ### Issues
 
-The whole process was mainly issue free, however I will highlight in this section a minor problem that was discovered and corrected.
+The whole process was mainly issue free, however I will highlight in this section a few minor problems that were discovered and corrected.
 
 - During the deployment to Heroku, I noticed that the user uploaded posts would have their images deleted, leaving an empty post with just its text information stored within the database.
 
@@ -467,6 +467,14 @@ The whole process was mainly issue free, however I will highlight in this sectio
 Another thing worth mentioning is that the images stored within `trelawneycrafts/static/media/user_uploads` are capitalised due to the original names of the uploaded files that were uploaded using an iPhone 12. The reason this was not changed was due to the fact that this will be the case for user uploaded images.
 
 For a future fail-safe I could include a renaming feature in order to create a unique, lower case name for the user uploaded images in order to mitigate this issue.
+
+- **User Uploads Of Identical Images** - This was an issue noticed upon final deployment. If a user uploads the same image twice in different posts, the server would not be able to save it due to the file already existing. This would throw an internal server error.
+
+    In order to fix this, a check was added before the post was created in order to check whether the file path already exists, if it does, the user would be directed back to the upload page with a flashed messaging to make them aware of the error.
+
+    <p align="center">
+    <img src="./testing/issue-fix-01.png">
+    </p>
 
 ## Deployment
 
